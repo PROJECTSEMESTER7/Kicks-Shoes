@@ -1,0 +1,17 @@
+{
+  "name": "kicks-shoes",
+  "version": "1.0.0",
+  "description": "Kicks Shoes E-commerce Project",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm run dev",
+    "install-all": "npm install && cd frontend && npm install && cd ../backend && npm install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
