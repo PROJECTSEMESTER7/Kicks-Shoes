@@ -1,0 +1,216 @@
+.dashboard-layout {
+  background: #f5f6fa;
+  min-height: 100vh;
+}
+
+.sidebar {
+  color: #fff;
+  padding: 0;
+  border-right: 1px solid rgba(35, 35, 33, 0.2);
+  background: #fafafa;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: 24px 0px;
+  display: flex;
+  justify-content: center;
+}
+.header {
+  background: #fff;
+  margin: 24px 16px 0 0;
+  padding: 24px 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.card-stats {
+  display: flex;
+  gap: 24px;
+  margin: 24px 0;
+  justify-content: space-between;
+}
+
+.sale-graph {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  margin-bottom: 24px;
+}
+
+.best-sellers {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.recent-orders {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  margin-top: 24px;
+}
+
+.ant-table-thead > tr > th {
+  background: #f5f6fa !important;
+  font-weight: 600;
+}
+
+.ant-table-tbody > tr > td {
+  background: #fff;
+}
+
+.sale-graph .ant-btn {
+  border-radius: 8px;
+  font-weight: 500;
+  /* height: 30px; */
+  padding: 15px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .card-stats,
+  .sale-graph,
+  .best-sellers,
+  .recent-orders {
+    padding: 16px;
+  }
+}
+
+/* SIDEBAR */
+.sidebar span.ant-menu-title-content {
+  font-family: Rubik;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.25px;
+  text-transform: uppercase;
+}
+
+span.anticon.anticon-search,
+span.anticon.anticon-bell {
+  font-size: 20px;
+  margin-right: 20px;
+  font-weight: 600;
+}
+/* BEST SELLER */
+h4.best-seller-title,
+.ant-card-head-title,
+.recent-orders h4 {
+  color: #000;
+  font-family: Rubik;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+h4.best-seller-title {
+  border-bottom: 1px solid rgb(240, 240, 240);
+  padding-bottom: 16px;
+}
+
+.recent-orders h4 {
+  padding-bottom: 16px;
+}
+
+.ant-statistic-title {
+  color: #000 !important;
+  font-family: Rubik;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.stat-card {
+  flex: 1;
+  margin-right: 0;
+  margin-left: 0;
+  min-width: 0;
+  border-radius: 16px !important;
+  background: #fff !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-stats .stat-card:not(:last-child) {
+  margin-right: 24px;
+}
+
+.stat-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.stat-card-icon {
+  background: #4f6bed;
+  color: #fff;
+  border-radius: 10px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.stat-card-more {
+  color: #222;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.stat-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.stat-card-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.stat-card-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #222;
+}
+
+.stat-card-percent {
+  color: #222;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-card-desc {
+  color: #888;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+@media (max-width: 1200px) {
+  .stat-card {
+    min-width: 220px;
+    padding: 16px !important;
+  }
+  .card-stats {
+    gap: 12px;
+  }
+}
