@@ -25,6 +25,9 @@ function App() {
             outlineWidth: 0,
             defaultShadow: "none",
           },
+          Pagination: {
+            itemSize: 38,
+          },
         },
       }}
     >

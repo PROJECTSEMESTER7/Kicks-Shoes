@@ -1,50 +1,39 @@
 import React from "react";
-import { List, Avatar, Button } from "antd";
-
-const products = [
-  {
-    name: "Adidas Ultra boost",
-    price: "$126.50",
-    sales: 999,
-    img: "/img/shoe.png",
-  },
-  {
-    name: "Adidas Ultra boost",
-    price: "$126.50",
-    sales: 999,
-    img: "/img/shoe.png",
-  },
-  {
-    name: "Adidas Ultra boost",
-    price: "$126.50",
-    sales: 999,
-    img: "/img/shoe.png",
-  },
-];
+import { Button } from "antd";
+import { MoreOutlined } from "@ant-design/icons";
+import shoe from "../../../../assets/images/nikeproduct.png";
+import { products } from "../data/dashboardData";
 
 export default function BestSellers() {
+  // Get top 3 products by sales
+  const bestSellers = [...products]
+    .sort((a, b) => b.sales - a.sales)
+    .slice(0, 3);
+
   return (
     <div className="best-sellers">
-      <h4
-        className="best-seller-title"
-        style={{ borderBottom: "1px solid #f0f0f0", paddingBottom: 16 }}
-      >
-        Best Sellers
-      </h4>
-      <List
-        itemLayout="horizontal"
-        dataSource={products}
-        renderItem={(item) => (
-          <List.Item>
-            <List.Item.Meta
-              avatar={<Avatar src={item.img} />}
-              title={item.name}
-              description={`${item.price} - ${item.sales} sales`}
-            />
-          </List.Item>
-        )}
-      />
-      <Button type="default" block style={{ marginTop: 16 }}>
+      <div className="best-sellers-header">
+        <h4 className="best-seller-title">Best Sellers</h4>
+        <MoreOutlined className="best-sellers-more" />
+      </div>
+      <div className="best-sellers-list">
+        {bestSellers.map((item) => (
+          <div className="best-seller-item" key={item.id}>
+            <img className="best-seller-avatar" src={shoe} alt={item.name} />
+            <div className="best-seller-info">
+              <div className="best-seller-name">{item.name}</div>
+              <div className="best-seller-price">${item.price.toFixed(2)}</div>
+            </div>
+            <div className="best-seller-meta">
+              <div className="best-seller-price-bold">
+                ${item.price.toFixed(2)}
+              </div>
+              <div className="best-seller-sales">{item.sales} sales</div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <Button className="best-seller-report" block>
         REPORT
       </Button>
     </div>
