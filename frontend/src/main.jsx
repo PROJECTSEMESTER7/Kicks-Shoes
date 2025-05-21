@@ -12,6 +12,7 @@ import AllProducts from "./components/pages/dashboard/AllProducts";
 import OrderList from "./components/pages/dashboard/OrderList";
 import OrderDetails from "./components/pages/dashboard/OrderDetails";
 import ProductDetails from "./components/pages/dashboard/ProductDetails";
+import DiscountListPage from "./components/pages/dashboard/DiscountListPage";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
           {
             path: "products/add-new",
             element: <ProductDetails isAddNew={true} />,
+          },
+          {
+            path: "discounts",
+            element: <DiscountListPage />,
           },
         ],
       },

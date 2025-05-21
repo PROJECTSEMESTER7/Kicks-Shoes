@@ -538,6 +538,109 @@ export const orders = [
   },
 ];
 
+export const discounts = [
+  {
+    id: 1,
+    code: "SUMMER2024",
+    percentage: 20,
+    totalDiscount: 100,
+    totalUsed: 45,
+    minimumAmount: 50.0,
+    maximumDiscount: 100.0,
+    status: "Active",
+  },
+  {
+    id: 2,
+    code: "WELCOME10",
+    percentage: 10,
+    totalDiscount: 100,
+    totalUsed: 32,
+    minimumAmount: 30.0,
+    maximumDiscount: 50.0,
+    status: "Active",
+  },
+  {
+    id: 3,
+    code: "SPRING15",
+    percentage: 15,
+    totalDiscount: 100,
+    totalUsed: 28,
+    minimumAmount: 75.0,
+    maximumDiscount: 75.0,
+    status: "Active",
+  },
+  {
+    id: 4,
+    code: "FLASH25",
+    percentage: 25,
+    totalDiscount: 100,
+    totalUsed: 15,
+    minimumAmount: 100.0,
+    maximumDiscount: 150.0,
+    status: "Active",
+  },
+  {
+    id: 5,
+    code: "LOYALTY20",
+    percentage: 20,
+    totalDiscount: 100,
+    totalUsed: 40,
+    minimumAmount: 60.0,
+    maximumDiscount: 80.0,
+    status: "Active",
+  },
+  {
+    id: 6,
+    code: "HOLIDAY30",
+    percentage: 30,
+    totalDiscount: 100,
+    totalUsed: 20,
+    minimumAmount: 150.0,
+    maximumDiscount: 200.0,
+    status: "Active",
+  },
+  {
+    id: 7,
+    code: "NEWUSER15",
+    percentage: 15,
+    totalDiscount: 100,
+    totalUsed: 25,
+    minimumAmount: 40.0,
+    maximumDiscount: 60.0,
+    status: "Active",
+  },
+  {
+    id: 8,
+    code: "BULK25",
+    percentage: 25,
+    totalDiscount: 100,
+    totalUsed: 18,
+    minimumAmount: 200.0,
+    maximumDiscount: 250.0,
+    status: "Active",
+  },
+  {
+    id: 9,
+    code: "CLEARANCE40",
+    percentage: 40,
+    totalDiscount: 100,
+    totalUsed: 12,
+    minimumAmount: 80.0,
+    maximumDiscount: 120.0,
+    status: "Active",
+  },
+  {
+    id: 10,
+    code: "WEEKEND20",
+    percentage: 20,
+    totalDiscount: 100,
+    totalUsed: 35,
+    minimumAmount: 50.0,
+    maximumDiscount: 70.0,
+    status: "Active",
+  },
+];
+
 export const getProducts = (page = 1, pageSize = 9) => {
   const startIndex = (page - 1) * pageSize;
   const endIndex = startIndex + pageSize;
@@ -564,4 +667,18 @@ export const getTotalProducts = () => {
 
 export const getTotalOrders = () => {
   return orders.length;
+};
+
+export const getDiscounts = (page = 1, pageSize = 10) => {
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  return discounts.slice(startIndex, endIndex);
+};
+
+export const getDiscountById = (id) => {
+  return discounts.find((discount) => discount.id === id);
+};
+
+export const getTotalDiscounts = () => {
+  return discounts.length;
 };
