@@ -13,6 +13,7 @@ import OrderList from "./components/pages/dashboard/OrderList";
 import OrderDetails from "./components/pages/dashboard/OrderDetails";
 import ProductDetails from "./components/pages/dashboard/ProductDetails";
 import DiscountListPage from "./components/pages/dashboard/DiscountListPage";
+import ChatPage from "./components/pages/dashboard/ChatPage";
 
 const router = createBrowserRouter([
   {
@@ -26,11 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "dashboard",
-        element: (
-          <>
-            <Dashboard />
-          </>
-        ),
+        element: <Dashboard />,
         children: [
           {
             path: "",
@@ -59,6 +56,10 @@ const router = createBrowserRouter([
           {
             path: "discounts",
             element: <DiscountListPage />,
+          },
+          {
+            path: "chat",
+            element: <ChatPage />,
           },
         ],
       },
