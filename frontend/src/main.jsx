@@ -15,6 +15,8 @@ import ProductDetails from "./components/pages/dashboard/ProductDetails";
 import DiscountListPage from "./components/pages/dashboard/DiscountListPage";
 import ChatPage from "./components/pages/dashboard/ChatPage";
 import UserManagementPage from "./components/pages/dashboard/UserManagementPage";
+import Login from "./components/pages/authentication/pages/Login";
+import RegisterPage from "./components/pages/authentication/pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <HomePage />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "register",
+        element: <RegisterPage />,
       },
       {
         path: "dashboard",

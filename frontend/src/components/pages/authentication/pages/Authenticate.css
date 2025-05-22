@@ -1,14 +1,12 @@
-
 .login-page {
   padding: 20px;
   font-family: "Rubik", sans-serif;
   color: #ccc;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: left;
-  background-color: #e7e7e3 ;
+  background-color: #e7e7e3;
 }
 
 .login-container {
@@ -37,24 +35,30 @@
   margin-bottom: 12px;
   font-weight: 700;
   color: #1a1a1a;
+  font-size: 32px;
 }
-
 
 .input {
   padding: 10px 14px;
-  font-size: 1rem;
   border-radius: 6px;
-  border: 1px solid #000000; 
-  background-color: #e7e7e3; 
+  border: 1px solid #000000;
+  background-color: #e7e7e3;
   outline: none;
   width: 100%;
   box-sizing: border-box;
-  color: #222;
+  color: #79767c;
+  font-family: "Rubik";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  height: 50px;
 }
 
 .input:focus {
-  border-color: #333434;
-  box-shadow: 0 0 6px #4169e1aa;
+  border-color: #333434 !important;
+  box-shadow: 0 0 6px #aaaaaaaa;
 }
 
 .checkbox {
@@ -70,9 +74,8 @@
 .checkbox input[type="checkbox"] {
   flex-shrink: 0;
   cursor: pointer;
-  accent-color: #000; 
+  accent-color: #000;
 }
-
 
 .ant-checkbox-inner {
   border-color: #000 !important;
@@ -105,20 +108,27 @@
 
 .more-info {
   display: block;
-  color: #000;
   text-decoration: underline;
   cursor: pointer;
   transition: color 0.3s ease;
-  font-size: 0.85rem;
-  padding-left: 24px; 
-
+  padding-left: 24px;
+  color: #232321;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600 !important;
+  line-height: normal;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
 }
 
 .more-info:hover {
-  color: #6f6b6b ;
+  color: #6f6b6b;
   text-decoration: underline;
 }
-
 
 .email-login-btn {
   display: flex;
@@ -128,10 +138,10 @@
   font-weight: 700;
   font-size: 1rem;
   border-radius: 6px;
-  background-color: #333;
-  color: #eee;
+  color: #ffffff;
   border: none;
   cursor: pointer;
+  background: #232321;
   transition: background-color 0.3s ease;
 }
 
@@ -184,18 +194,33 @@
   color: black;
   background-color: #e7e7e3;
   border: 2px solid #000000;
-
+  position: relative;
 }
 
 .apple:hover {
   background-color: #222;
 }
 
+.apple-logo-white {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.apple:hover .apple-logo {
+  display: none;
+}
+
+.apple:hover .apple-logo-white {
+  display: block;
+}
+
 .facebook {
   background-color: #e7e7e3;
   border: 2px solid #000000;
-  color:blue;
-
+  color: blue;
 }
 
 .facebook:hover {
@@ -203,14 +228,25 @@
 }
 
 .terms {
-  font-size: 0.7rem;
   color: #666;
   margin-top: 14px;
   line-height: 1.3;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 /* CLUB BOX */
-
+.club-paragraph,
+.club-box ul {
+  color: #232321;
+  font-size: 16px !important;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  opacity: 0.8;
+}
 .club-box {
   background: white;
   flex: 1;
@@ -225,9 +261,12 @@
 }
 
 .club-box h3 {
-  font-weight: 700;
-  font-size: 1.9rem;
   margin-bottom: 6px;
+  color: black;
+  font-size: 38px !important;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .club-box p {
@@ -251,8 +290,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1a1a1a;
-  color: white;
+  color: #ffffff;
+  background: #232321;
   font-weight: 700;
   padding: 25px 16px;
   border: none;
@@ -278,17 +317,30 @@
   font-weight: bold;
 }
 
-
 .text-link {
   color: #000 !important;
   text-decoration: underline !important;
-  font-size: 0.85rem;
   cursor: pointer;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500 !important;
+  line-height: normal;
+  text-decoration-skip-ink: none;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
 }
 
 .text-link:hover {
   color: #6f6b6b !important;
-  text-decoration: underline ;
+  text-decoration: underline;
+}
+
+span.ant-checkbox-label {
+  color: #232321;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 /* Responsive */
@@ -343,7 +395,7 @@
 
 /* 5. Chèn dấu tick trắng bằng pseudo-element ::before */
 .gender-radio-group .ant-radio-checked .ant-radio-inner::before {
-  content: '✖';
+  content: "✖";
   color: #ffffff;
   font-size: 14px;
   font-weight: bold;
@@ -358,4 +410,19 @@
   display: flex;
   align-items: center;
   gap: 6px;
+}
+
+img.social-logo {
+  width: 32px;
+  height: 32px;
+}
+
+.form-label {
+  color: var(--Dark-Gray, #232321);
+  font-family: Rubik;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 20px;
 }

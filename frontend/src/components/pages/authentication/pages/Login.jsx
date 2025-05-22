@@ -1,7 +1,11 @@
 import React from "react";
 import { Form, Input, Typography, Divider, Button } from "antd";
-import { GoogleOutlined, AppleOutlined, FacebookOutlined } from "@ant-design/icons";
-import "../../../../styles/Authenticate.css";
+import {
+  GoogleOutlined,
+  AppleOutlined,
+  FacebookOutlined,
+} from "@ant-design/icons";
+import "./Authenticate.css";
 import LoginHeader from "../components/LoginHeader";
 import RememberCheckbox from "../components/RememberCheckbox";
 import EmailLoginButton from "../components/EmailLoginButton";
@@ -13,31 +17,27 @@ const { Paragraph } = Typography;
 
 const Login = () => {
   return (
-    <><div>
-    </div><div className="login-page">
+    <>
+      <div className="login-page">
         <div className="login-container">
-
           {/* LOGIN SECTION */}
           <div className="login-box">
             <LoginHeader />
 
-
             <RememberCheckbox />
             <EmailLoginButton />
 
-            <Divider>Or log in with</Divider>
+            <Divider style={{ margin: "0px" }}>Or log in with</Divider>
 
             <SocialButton />
             <Term />
-
-
-
           </div>
 
           {/* JOIN CLUB SECTION */}
           <JoinClub />
         </div>
-      </div></>
+      </div>
+    </>
   );
 };
 

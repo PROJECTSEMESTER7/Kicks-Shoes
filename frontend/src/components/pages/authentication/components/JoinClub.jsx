@@ -5,10 +5,12 @@ const { Title, Paragraph } = Typography;
 
 const JoinClub = () => {
   return (
-    <div className="club-box" style={{ fontSize: "1rem" }}>
+    <div className="club-box">
       <Title level={3}>Join Kicks Club Get Rewarded Today.</Title>
-      <Paragraph className="club-paragraph" style={{ fontSize: "0.85rem" }}>
-        As a kicks club member you get rewarded with what you love for doing what you love. Sign up Today and receive immediate access to these Level 1 benefits:
+      <Paragraph className="club-paragraph">
+        As a kicks club member you get rewarded with what you love for doing
+        what you love. Sign up Today and receive immediate access to these Level
+        1 benefits:
       </Paragraph>
       <ul>
         <li>Free shipping</li>
@@ -17,8 +19,9 @@ const JoinClub = () => {
         <li>Access to adidas Running and Training apps</li>
         <li>Special offers and promotions</li>
       </ul>
-      <Paragraph style={{ fontSize: "1.1rem", color: "#555" }}>
-        Join now to start earning points, reach new levels and unlock more rewards and benefits from adiClub.
+      <Paragraph className="club-paragraph">
+        Join now to start earning points, reach new levels and unlock more
+        rewards and benefits from adiClub.
       </Paragraph>
       <Button type="default" block className="join-club-btn">
         <span className="join-text">JOIN THE CLUB</span>

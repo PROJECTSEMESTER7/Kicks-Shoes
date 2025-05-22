@@ -8,7 +8,12 @@ const RememberCheckbox = () => {
         <Checkbox id="remember">
           Keep me logged in - applies to all log in options below.
         </Checkbox>
-        <a href="#" className="more-info" style={{fontWeight: "bold"}} htmlFor="remember">
+        <a
+          href="#"
+          className="more-info"
+          style={{ fontWeight: "bold" }}
+          htmlFor="remember"
+        >
           More info
         </a>
       </>
