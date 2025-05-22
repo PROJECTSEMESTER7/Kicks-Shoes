@@ -12,11 +12,11 @@ const LoginHeader = () => {
       </a>
 
       <Form layout="vertical">
-        <Form.Item label={<strong></strong>}>
+        <Form.Item>
           <Input className="input" placeholder="Email" />
         </Form.Item>
 
-        <Form.Item label={<strong></strong>}>
+        <Form.Item>
           <Input.Password className="input" placeholder="Password" />
         </Form.Item>
       </Form>

@@ -328,6 +328,7 @@
   text-decoration-skip-ink: none;
   text-underline-offset: auto;
   text-underline-position: from-font;
+  margin-bottom: 20px;
 }
 
 .text-link:hover {
@@ -425,4 +426,86 @@ img.social-logo {
   font-weight: 600;
   line-height: normal;
   margin-bottom: 20px;
+}
+
+/* ADMIN LOGIN PAGE */
+.login-container-admin {
+  background-color: #e7e7e3;
+  display: flex;
+  border-radius: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  min-width: 100vw;
+  padding: 0;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.login-image-half-admin {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 0;
+  background: #fff;
+  min-height: 100vh;
+  height: 100vh;
+}
+
+.login-image-admin {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  border-radius: 0;
+  max-width: unset;
+  max-height: unset;
+}
+
+.login-box-admin {
+  background: #e7e7e3;
+  padding: 40px 32px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 4px 15px rgb(0 0 0 / 0.08);
+  min-width: 350px;
+  max-width: 480px;
+  height: 100vh;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .login-container-admin {
+    flex-direction: column;
+    padding: 0;
+    min-height: 100vh;
+    height: 100vh;
+  }
+  .login-image-half-admin {
+    min-height: 200px;
+    height: 40vh;
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+  .login-image-admin {
+    height: 40vh;
+  }
+  .login-box-admin {
+    padding: 24px 10px;
+    min-width: unset;
+    max-width: unset;
+    border-radius: 0 0 12px 12px;
+    height: 60vh;
+  }
 }

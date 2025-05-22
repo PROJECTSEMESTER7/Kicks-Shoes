@@ -17,6 +17,7 @@ import ChatPage from "./components/pages/dashboard/ChatPage";
 import UserManagementPage from "./components/pages/dashboard/UserManagementPage";
 import Login from "./components/pages/authentication/pages/Login";
 import RegisterPage from "./components/pages/authentication/pages/Register";
+import LoginAdmin from "./components/pages/authentication/pages/LoginAdmin";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "login-admin",
+        element: <LoginAdmin />,
       },
       {
         path: "register",
