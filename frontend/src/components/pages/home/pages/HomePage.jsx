@@ -50,8 +50,8 @@ const HomePage = () => {
         gap: 24,
       }}
     >
-      {products.map((product, idx) => (
-        <ProductCard key={idx} product={product} />
+      {products.map((product) => (
+        <ProductCard key={product.name} product={product} />
       ))}
     </div>
   );
