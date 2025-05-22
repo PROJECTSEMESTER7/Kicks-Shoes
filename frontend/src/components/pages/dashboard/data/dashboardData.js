@@ -641,6 +641,129 @@ export const discounts = [
   },
 ];
 
+export const users = [
+  {
+    id: 1,
+    name: "John Doe",
+    email: "john@example.com",
+    phone: "123-456-7890",
+    role: "Admin",
+    status: "Active",
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    email: "jane@example.com",
+    phone: "098-765-4321",
+    role: "User",
+    status: "Active",
+  },
+  {
+    id: 3,
+    name: "Mike Johnson",
+    email: "mike@example.com",
+    phone: "555-123-4567",
+    role: "User",
+    status: "Active",
+  },
+  {
+    id: 4,
+    name: "Sarah Wilson",
+    email: "sarah@example.com",
+    phone: "555-987-6543",
+    role: "Admin",
+    status: "Inactive",
+  },
+  {
+    id: 5,
+    name: "David Brown",
+    email: "david@example.com",
+    phone: "555-456-7890",
+    role: "User",
+    status: "Active",
+  },
+  {
+    id: 6,
+    name: "Emily Davis",
+    email: "emily@example.com",
+    phone: "555-789-0123",
+    role: "User",
+    status: "Active",
+  },
+  {
+    id: 7,
+    name: "Robert Taylor",
+    email: "robert@example.com",
+    phone: "555-234-5678",
+    role: "User",
+    status: "Inactive",
+  },
+  {
+    id: 8,
+    name: "Lisa Anderson",
+    email: "lisa@example.com",
+    phone: "555-345-6789",
+    role: "User",
+    status: "Active",
+  },
+  {
+    id: 9,
+    name: "James Wilson",
+    email: "james@example.com",
+    phone: "555-456-7890",
+    role: "Admin",
+    status: "Active",
+  },
+  {
+    id: 10,
+    name: "Maria Garcia",
+    email: "maria@example.com",
+    phone: "555-567-8901",
+    role: "User",
+    status: "Active",
+  },
+  {
+    id: 11,
+    name: "Thomas Lee",
+    email: "thomas@example.com",
+    phone: "555-678-9012",
+    role: "User",
+    status: "Inactive",
+  },
+  {
+    id: 12,
+    name: "Jennifer White",
+    email: "jennifer@example.com",
+    phone: "555-789-0123",
+    role: "User",
+    status: "Active",
+  },
+  {
+    id: 13,
+    name: "William Clark",
+    email: "william@example.com",
+    phone: "555-890-1234",
+    role: "User",
+    status: "Active",
+  },
+  {
+    id: 14,
+    name: "Patricia Martinez",
+    email: "patricia@example.com",
+    phone: "555-901-2345",
+    role: "User",
+    status: "Active",
+  },
+  {
+    id: 15,
+    name: "Michael Thompson",
+    email: "michael@example.com",
+    phone: "555-012-3456",
+    role: "User",
+    status: "Inactive",
+  },
+];
+
 export const getProducts = (page = 1, pageSize = 9) => {
   const startIndex = (page - 1) * pageSize;
   const endIndex = startIndex + pageSize;
@@ -681,4 +804,18 @@ export const getDiscountById = (id) => {
 
 export const getTotalDiscounts = () => {
   return discounts.length;
+};
+
+export const getUsers = (page = 1, pageSize = 9) => {
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  return users.slice(startIndex, endIndex);
+};
+
+export const getUserById = (id) => {
+  return users.find((user) => user.id === id);
+};
+
+export const getTotalUsers = () => {
+  return users.length;
 };

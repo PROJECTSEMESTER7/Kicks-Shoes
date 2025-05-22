@@ -14,6 +14,7 @@ import OrderDetails from "./components/pages/dashboard/OrderDetails";
 import ProductDetails from "./components/pages/dashboard/ProductDetails";
 import DiscountListPage from "./components/pages/dashboard/DiscountListPage";
 import ChatPage from "./components/pages/dashboard/ChatPage";
+import UserManagementPage from "./components/pages/dashboard/UserManagementPage";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
           {
             path: "chat",
             element: <ChatPage />,
+          },
+          {
+            path: "users",
+            element: <UserManagementPage />,
           },
         ],
       },

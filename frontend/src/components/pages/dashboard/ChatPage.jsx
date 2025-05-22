@@ -34,7 +34,7 @@ const ChatPage = () => {
   ];
 
   useEffect(() => {
-    setActiveTab("5");
+    setActiveTab("6");
     // Set default chat to AI Assistant
     setSelectedChat(chatList[0]);
   }, [setActiveTab]);

@@ -6,6 +6,7 @@ import {
   UnorderedListOutlined,
   WalletOutlined,
   MessageOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 import logo from "../../../../assets/images/logo_small.png";
 import { useNavigate } from "react-router-dom";
@@ -31,6 +32,9 @@ export default function Sidebar({ activeTab, setActiveTab }) {
         navigate("/dashboard/discounts");
         break;
       case "5":
+        navigate("/dashboard/users");
+        break;
+      case "6":
         navigate("/dashboard/chat");
         break;
       default:
@@ -67,7 +71,10 @@ export default function Sidebar({ activeTab, setActiveTab }) {
         <Menu.Item style={{ height: 48 }} key="4" icon={<WalletOutlined />}>
           Discount Management
         </Menu.Item>
-        <Menu.Item style={{ height: 48 }} key="5" icon={<MessageOutlined />}>
+        <Menu.Item style={{ height: 48 }} key="5" icon={<UserOutlined />}>
+          User Management
+        </Menu.Item>
+        <Menu.Item style={{ height: 48 }} key="6" icon={<MessageOutlined />}>
           Chat
         </Menu.Item>
       </Menu>
