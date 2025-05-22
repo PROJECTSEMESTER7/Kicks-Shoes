@@ -14,6 +14,8 @@ const products = [
     image:
       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/3bbecbdf584e40398446a8bf0117cf62_9366/Giay_Samba_OG_trang_B75806_01_00_standard.jpg",
     isNew: false,
+    isSale: true,
+    salePercent: 12,
     name: "NIKE AIR ZOOM PEGASUS",
     price: 110,
     onViewProduct: () => window.open("https://nike.com/product2", "_blank"),

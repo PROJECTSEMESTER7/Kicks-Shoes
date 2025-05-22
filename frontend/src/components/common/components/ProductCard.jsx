@@ -2,11 +2,20 @@ import React from "react";
 import "./ProductCard.css";
 
 const ProductCard = ({ product }) => {
-  const { image, isNew, name, price, onViewProduct } = product;
+  const { image, isNew, isSale, salePercent, name, price, onViewProduct } =
+    product;
   return (
     <div className="product-card">
       <div className="product-card__image-container">
         {isNew && <div className="product-card__badge">New</div>}
+        {isSale && (
+          <div
+            style={{ backgroundColor: "#FFA52F", width: "65px" }}
+            className="product-card__badge"
+          >
+            ${salePercent}% off
+          </div>
+        )}
         <img src={image} alt={name} className="product-card__image" />
       </div>
       <div className="product-card__info">
