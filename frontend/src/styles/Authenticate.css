@@ -1,0 +1,361 @@
+
+.login-page {
+  padding: 20px;
+  font-family: "Rubik", sans-serif;
+  color: #ccc;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  background-color: #e7e7e3 ;
+}
+
+.login-container {
+  background-color: #e7e7e3;
+  display: flex;
+  gap: 20px;
+  border-radius: 12px;
+  max-width: none;
+  width: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+/* LOGIN BOX */
+
+.login-box {
+  background: #e7e7e3;
+  padding: 25px 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-box h2 {
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+
+.input {
+  padding: 10px 14px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #000000; 
+  background-color: #e7e7e3; 
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  color: #222;
+}
+
+.input:focus {
+  border-color: #333434;
+  box-shadow: 0 0 6px #4169e1aa;
+}
+
+.checkbox {
+  font-size: 0.9rem;
+  color: #000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+  text-align: left;
+}
+
+.checkbox input[type="checkbox"] {
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: #000; 
+}
+
+
+.ant-checkbox-inner {
+  border-color: #000 !important;
+  background-color: #fff !important;
+}
+
+.ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.ant-checkbox:hover .ant-checkbox-inner {
+  border-color: #000 !important;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #000 !important;
+  border-color: #000 !important;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner::after {
+  border-color: white !important;
+}
+
+.ant-checkbox-checked:hover .ant-checkbox-inner {
+  background-color: #000 !important;
+  border-color: #000 !important;
+}
+.remember-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.more-info {
+  display: block;
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-size: 0.85rem;
+  padding-left: 24px; 
+
+}
+
+.more-info:hover {
+  color: #6f6b6b ;
+  text-decoration: underline;
+}
+
+
+.email-login-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 16px;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 6px;
+  background-color: #333;
+  color: #eee;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.email-login-btn:hover {
+  background-color: #6f6b6b !important;
+}
+
+.email-login-btn .email-text {
+  text-align: left;
+}
+
+.email-login-btn .arrow {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* SOCIAL BUTTONS */
+.social-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.social {
+  flex: 1;
+  border: none;
+  border-radius: 6px;
+  padding: 25px 0;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  color: white;
+}
+
+.google {
+  background-color: #e7e7e3;
+  color: #ff0000;
+  border: 2px solid #000000;
+}
+
+.google:hover {
+  background-color: #f2f2f2;
+}
+
+.apple {
+  color: black;
+  background-color: #e7e7e3;
+  border: 2px solid #000000;
+
+}
+
+.apple:hover {
+  background-color: #222;
+}
+
+.facebook {
+  background-color: #e7e7e3;
+  border: 2px solid #000000;
+  color:blue
+
+}
+
+.facebook:hover {
+  background-color: #0f57d3;
+}
+
+.terms {
+  font-size: 0.7rem;
+  color: #666;
+  margin-top: 14px;
+  line-height: 1.3;
+}
+
+/* CLUB BOX */
+
+.club-box {
+  background: white;
+  flex: 1;
+  align-self: flex-start;
+  border-radius: 10px;
+  padding: 25px 30px;
+  box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+  color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.club-box h3 {
+  font-weight: 700;
+  font-size: 1.9rem;
+  margin-bottom: 6px;
+}
+
+.club-box p {
+  font-size: 0.9rem;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+.club-box ul {
+  list-style: inside disc;
+  margin-bottom: 12px;
+  padding-left: 0;
+  color: #444;
+}
+
+.club-box ul li {
+  margin-bottom: 6px;
+}
+
+.join-club-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a1a1a;
+  color: white;
+  font-weight: 700;
+  padding: 25px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  text-align: left;
+  margin-top: 8px;
+  font-size: 1rem;
+}
+
+.join-club-btn:hover {
+  background-color: #6f6b6b !important;
+}
+
+.join-club-btn .join-text {
+  text-align: left;
+}
+
+.join-club-btn .arrow {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+
+.text-link {
+  color: #000 !important;
+  text-decoration: underline !important;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.text-link:hover {
+  color: #6f6b6b !important;
+  text-decoration: underline ;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+}
+.login-image-half {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.login-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+/* 1. Xếp hàng ngang */
+.gender-radio-group {
+  display: flex;
+  gap: 20px;
+}
+
+/* 2. Biến radio thành ô vuông */
+.gender-radio-group .ant-radio-inner {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 2px !important; /* Vuông */
+  border: 2px solid #000 !important;
+  background-color: #fff !important;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* 3. Ẩn dấu tròn xanh mặc định của Antd */
+.gender-radio-group .ant-radio-inner::after {
+  display: none !important;
+}
+
+/* 4. Khi chọn: ô vuông đen và thêm dấu tick trắng */
+.gender-radio-group .ant-radio-checked .ant-radio-inner {
+  background-color: #000 !important;
+  border-color: #000 !important;
+}
+
+/* 5. Chèn dấu tick trắng bằng pseudo-element ::before */
+.gender-radio-group .ant-radio-checked .ant-radio-inner::before {
+  content: '✖';
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 6. Giảm khoảng cách giữa radio và text nếu cần */
+.gender-radio-group .ant-radio-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
