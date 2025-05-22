@@ -1,0 +1,10 @@
+.checkout-layout {
+  background: #e7e7e3;
+  padding: 24px;
+}
+
+.checkout-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}

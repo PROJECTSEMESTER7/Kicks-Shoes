@@ -1,0 +1,24 @@
+/* ContactDetails.css */
+
+.contact-card {
+  background: #e7e7e3;
+  margin-bottom: 24px;
+  border: none;
+}
+
+.contact-title {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.contact-paragraph {
+  margin-bottom: 16px;
+}
+
+.contact-form-item {
+  margin-bottom: 24px;
+}
+
+.contact-input {
+  border-color: black;
+}
