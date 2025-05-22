@@ -15,7 +15,7 @@ import ProductDetails from "./components/pages/dashboard/ProductDetails";
 import DiscountListPage from "./components/pages/dashboard/DiscountListPage";
 import ChatPage from "./components/pages/dashboard/ChatPage";
 import UserManagementPage from "./components/pages/dashboard/UserManagementPage";
-import CheckoutPage from "./components/pages/checkout/CheckoutPage";
+import CheckoutPage from "./components/pages/checkout/CheckOut";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <HomePage />,
+      },
+      {
+            path: "checkout",
+            element: <CheckoutPage />,
       },
       {
         path: "dashboard",
@@ -66,10 +70,6 @@ const router = createBrowserRouter([
           {
             path: "users",
             element: <UserManagementPage />,
-          },
-          {
-            path: "checkout",
-            element: <CheckoutPage />,
           },
         ],
       },
