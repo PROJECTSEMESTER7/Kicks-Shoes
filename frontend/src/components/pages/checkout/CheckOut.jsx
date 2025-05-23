@@ -1,8 +1,8 @@
-import { Layout, Row, Col } from "antd"
-import CheckoutForm from "./components/CheckOutForm"
-import OrderSummary from "./components/OrderSummary"
-import OrderDetails from "./components/OrderDetails"
-import "./Checkout.css"
+import { Layout, Row, Col } from "antd";
+import CheckoutForm from "./components/CheckOutForm";
+import OrderSummary from "./components/OrderSummary";
+import OrderDetails from "./components/OrderDetails";
+import "./Checkout.css";
 
 export default function CheckoutPage() {
   return (
@@ -24,5 +24,5 @@ export default function CheckoutPage() {
         </Col>
       </Row>
     </Layout>
-  )
+  );
 }
