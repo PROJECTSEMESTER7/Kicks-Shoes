@@ -2,7 +2,7 @@ import { Layout, Row, Col } from "antd";
 import CheckoutForm from "./components/CheckOutForm";
 import OrderSummary from "./components/OrderSummary";
 import OrderDetails from "./components/OrderDetails";
-import "./Checkout.css";
+import "./CheckOut.css";
 
 export default function CheckoutPage() {
   return (

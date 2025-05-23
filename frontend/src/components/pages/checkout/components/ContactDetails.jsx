@@ -10,7 +10,7 @@ export default function ContactDetails({ form }) {
         Contact Details
       </Title>
       <Paragraph className="contact-paragraph">
-        We will use these details to keep you inform about your delivery.
+        We will use these details to keep you informed about your delivery.
       </Paragraph>
 
       <Form form={form} layout="vertical">

@@ -26,19 +26,17 @@ export default function DeliveryOptions({ deliveryMethod, setDeliveryMethod }) {
         className="delivery-radio-group"
       >
         <Space direction="vertical" className="delivery-radio-space">
-          <Card
+                    <Card
+                    onClick={() => setDeliveryMethod("standard")}
             className="delivery-option-card"
             style={{
-              borderColor:
-                deliveryMethod === "standard" ? "#1890ff" : "#d9d9d9",
+              borderColor: deliveryMethod === "standard" ? "black" : "#d9d9d9",
+              backgroundColor: deliveryMethod === "standard" ? "#e7e7e3" : "#ffffff",
             }}
           >
-            <Radio value="standard" className="delivery-radio">
               <Row justify="space-between" align="middle" className="delivery-row">
                 <Col>
-                  <div>
-                    <Text strong>Standard Delivery</Text>
-                  </div>
+                  <Text strong>Standard Delivery</Text>
                   <div>
                     <Text type="secondary">
                       Enter your address to see when you'll get your order
@@ -49,21 +47,19 @@ export default function DeliveryOptions({ deliveryMethod, setDeliveryMethod }) {
                   <Text strong>$6.99</Text>
                 </Col>
               </Row>
-            </Radio>
           </Card>
 
           <Card
+          onClick={() => setDeliveryMethod("store")}
             className="delivery-option-card"
             style={{
-              borderColor: deliveryMethod === "store" ? "#1890ff" : "#d9d9d9",
+              borderColor: deliveryMethod === "store" ? "black" : "#d9d9d9",
+              backgroundColor: deliveryMethod === "store" ? "#e7e7e3" : "#ffffff",
             }}
           >
-            <Radio value="store" className="delivery-radio">
               <Row justify="space-between" align="middle" className="delivery-row">
                 <Col>
-                  <div>
-                    <Text strong>Collect in store</Text>
-                  </div>
+                  <Text strong>Collect in store</Text>
                   <div>
                     <Text type="secondary">Pay now, collect in store</Text>
                   </div>
@@ -72,7 +68,6 @@ export default function DeliveryOptions({ deliveryMethod, setDeliveryMethod }) {
                   <Text strong>Free</Text>
                 </Col>
               </Row>
-            </Radio>
           </Card>
         </Space>
       </Radio.Group>
