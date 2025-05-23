@@ -16,6 +16,9 @@ import DiscountListPage from "./components/pages/dashboard/DiscountListPage";
 import ChatPage from "./components/pages/dashboard/ChatPage";
 import UserManagementPage from "./components/pages/dashboard/UserManagementPage";
 import CheckoutPage from "./components/pages/checkout/CheckOut";
+import Login from "./components/pages/authentication/pages/Login";
+import RegisterPage from "./components/pages/authentication/pages/Register";
+import LoginAdmin from "./components/pages/authentication/pages/LoginAdmin";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +33,16 @@ const router = createBrowserRouter([
       {
             path: "checkout",
             element: <CheckoutPage />,
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "login-admin",
+        element: <LoginAdmin />,
+      },
+      {
+        path: "register",
+        element: <RegisterPage />,
       },
       {
         path: "dashboard",
