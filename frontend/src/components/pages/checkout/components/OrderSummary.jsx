@@ -1,7 +1,7 @@
-import { Card, Col, Divider, Row, Typography } from "antd"
-import "./OrderSummary.css"
+import { Card, Col, Divider, Row, Typography } from "antd";
+import "./OrderSummary.css";
 
-const { Title, Text } = Typography
+const { Title, Text } = Typography;
 
 export default function OrderSummary() {
   return (
@@ -12,7 +12,7 @@ export default function OrderSummary() {
 
       <Row justify="space-between" className="order-summary-row">
         <Col>
-          <Text>1 ITEM</Text>
+          <Text className="order-summary-text">1 ITEM</Text>
         </Col>
         <Col>
           <Text strong>$130.00</Text>
@@ -21,7 +21,7 @@ export default function OrderSummary() {
 
       <Row justify="space-between" className="order-summary-row">
         <Col>
-          <Text>Delivery</Text>
+          <Text className="order-summary-text">Delivery</Text>
         </Col>
         <Col>
           <Text>$6.99</Text>
@@ -30,7 +30,7 @@ export default function OrderSummary() {
 
       <Row justify="space-between" className="order-summary-row">
         <Col>
-          <Text>Sales Tax</Text>
+          <Text className="order-summary-text">Sales Tax</Text>
         </Col>
         <Col>
           <Text>-</Text>
@@ -44,9 +44,9 @@ export default function OrderSummary() {
           <Text strong>Total</Text>
         </Col>
         <Col>
-          <Text strong>$130.00</Text>
+          <Text style={{ fontSize: "18px" }}>$130.00</Text>
         </Col>
       </Row>
     </Card>
-  )
+  );
 }

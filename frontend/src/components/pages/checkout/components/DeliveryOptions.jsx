@@ -8,10 +8,10 @@ import {
   Form,
   Checkbox,
   Button,
-} from "antd"
-import "./DeliveryOptions.css"
+} from "antd";
+import "./DeliveryOptions.css";
 
-const { Title, Text } = Typography
+const { Title, Text } = Typography;
 
 export default function DeliveryOptions({ deliveryMethod, setDeliveryMethod }) {
   return (
@@ -26,48 +26,60 @@ export default function DeliveryOptions({ deliveryMethod, setDeliveryMethod }) {
         className="delivery-radio-group"
       >
         <Space direction="vertical" className="delivery-radio-space">
-                    <Card
-                    onClick={() => setDeliveryMethod("standard")}
+          <Card
+            onClick={() => setDeliveryMethod("standard")}
             className="delivery-option-card"
             style={{
               borderColor: deliveryMethod === "standard" ? "black" : "#d9d9d9",
-              backgroundColor: deliveryMethod === "standard" ? "#e7e7e3" : "#ffffff",
+              backgroundColor:
+                deliveryMethod === "standard" ? "#e7e7e3" : "#ffffff",
             }}
           >
-              <Row justify="space-between" align="middle" className="delivery-row">
-                <Col>
-                  <Text strong>Standard Delivery</Text>
-                  <div>
-                    <Text type="secondary">
-                      Enter your address to see when you'll get your order
-                    </Text>
-                  </div>
-                </Col>
-                <Col>
-                  <Text strong>$6.99</Text>
-                </Col>
-              </Row>
+            <Row
+              justify="space-between"
+              align="middle"
+              className="delivery-row"
+            >
+              <Col>
+                <Text className="delivery-text">Standard Delivery</Text>
+                <div>
+                  <Text type="secondary">
+                    Enter your address to see when you'll get your order
+                  </Text>
+                </div>
+              </Col>
+              <Col>
+                <Text style={{ color: "#4a69e2" }} strong>
+                  $6.99
+                </Text>
+              </Col>
+            </Row>
           </Card>
 
           <Card
-          onClick={() => setDeliveryMethod("store")}
+            onClick={() => setDeliveryMethod("store")}
             className="delivery-option-card"
             style={{
               borderColor: deliveryMethod === "store" ? "black" : "#d9d9d9",
-              backgroundColor: deliveryMethod === "store" ? "#e7e7e3" : "#ffffff",
+              backgroundColor:
+                deliveryMethod === "store" ? "#e7e7e3" : "#ffffff",
             }}
           >
-              <Row justify="space-between" align="middle" className="delivery-row">
-                <Col>
-                  <Text strong>Collect in store</Text>
-                  <div>
-                    <Text type="secondary">Pay now, collect in store</Text>
-                  </div>
-                </Col>
-                <Col>
-                  <Text strong>Free</Text>
-                </Col>
-              </Row>
+            <Row
+              justify="space-between"
+              align="middle"
+              className="delivery-row"
+            >
+              <Col>
+                <Text className="delivery-text">Collect in store</Text>
+                <div>
+                  <Text type="secondary">Pay now, collect in store</Text>
+                </div>
+              </Col>
+              <Col>
+                <Text strong>Free</Text>
+              </Col>
+            </Row>
           </Card>
         </Space>
       </Radio.Group>
@@ -82,7 +94,9 @@ export default function DeliveryOptions({ deliveryMethod, setDeliveryMethod }) {
         </Form.Item>
 
         <div className="delivery-updates-text">
-          <Text>Also want product updates with our newsletter?</Text>
+          <Text className="delivery-updates-text-paragraph">
+            Also want product updates with our newsletter?
+          </Text>
         </div>
 
         <Form.Item name="newsletter">
@@ -96,5 +110,5 @@ export default function DeliveryOptions({ deliveryMethod, setDeliveryMethod }) {
         REVIEW AND PAY
       </Button>
     </Card>
-  )
+  );
 }

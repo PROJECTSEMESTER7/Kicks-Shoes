@@ -44,3 +44,31 @@
   background-color: #000;
   border-color: #000;
 }
+
+.delivery-updates-text-paragraph {
+  margin-bottom: 0;
+  color: var(--Dark-Gray, #232321);
+  font-family: Rubik;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.delivery-text {
+  color: var(--Dark-Gray, #232321);
+  font-family: Rubik;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.delivery-title,
+.shipping-address-title,
+.contact-title {
+  margin-top: 0;
+  color: #232321;
+  font-family: Rubik;
+  font-size: 32px !important;
+  font-style: normal;
+}

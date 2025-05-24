@@ -3,7 +3,7 @@
   margin-bottom: 24px;
   border: none;
   padding-bottom: 0%;
-  margin-bottom: -24px !important; 
+  margin-bottom: -24px !important;
 }
 
 .contact-title {
@@ -13,6 +13,11 @@
 
 .contact-paragraph {
   margin-bottom: 16px;
+  opacity: 0.8;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 .contact-form-item {
