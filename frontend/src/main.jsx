@@ -18,6 +18,7 @@ import UserManagementPage from "./components/pages/dashboard/UserManagementPage"
 import Login from "./components/pages/authentication/pages/Login";
 import RegisterPage from "./components/pages/authentication/pages/Register";
 import LoginAdmin from "./components/pages/authentication/pages/LoginAdmin";
+import CartPage from "./components/pages/cart/pages/CartPage";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "cart",
+        element: <CartPage />,
       },
       {
         path: "login-admin",
