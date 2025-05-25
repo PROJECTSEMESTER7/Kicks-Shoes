@@ -20,7 +20,7 @@ const FilterSidebar = ({
       <h2 className="filter-sidebar__title">Filters</h2>
 
       {/* Refine by */}
-      <Collapse defaultActiveKey={["1"]} ghost>
+      <Collapse defaultActiveKey={["1", "2", "3", "4", "5", "6"]} ghost>
         <Panel header="REFINE BY" key="1">
           <div className="filter-refine">
             {refineOptions.map((option) => (
@@ -66,7 +66,7 @@ const FilterSidebar = ({
         </Panel>
 
         {/* Category */}
-        <Panel header="SIZE" key="4">
+        <Panel header="TYPE" key="4">
           <Checkbox.Group style={{ display: "flex", flexDirection: "column" }}>
             {categories.map((cat) => (
               <Checkbox key={cat} value={cat}>
