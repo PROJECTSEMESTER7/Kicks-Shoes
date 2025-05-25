@@ -1,9 +1,8 @@
-
-
 import "./RecommendSection.css";
 import ProductCard from "../../../common/components/ProductCard";
 import { useEffect, useState } from "react";
 import { newProducts } from "../../../../data/homepageData";
+import { Button } from "antd";
 
 export const RecommendSection = () => {
   const [newDrops, setNewDrops] = useState([]);
@@ -16,7 +15,7 @@ export const RecommendSection = () => {
         <h4>
           <span className="line">You May Also Like </span>
         </h4>
-        <button>See all products</button>
+        <Button>See all products</Button>
       </div>
 
       <div className="recommend-list">

@@ -3,11 +3,12 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
+  height: 555px;
 }
 
 .order-table {
   display: flex;
-    width: 30vw;
+  width: 30vw;
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
@@ -31,64 +32,60 @@
 }
 
 .item-info {
-    margin: 10px 0;
+  margin: 10px 0;
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: flex-start;
 }
 
-.total{
+.total {
   display: flex;
-    color: var(--Dark-Gray, #232321);
-/* Rubik/24px */
-font-family: Rubik;
-font-size: 24px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
+  color: var(--Dark-Gray, #232321);
+  /* Rubik/24px */
+  font-family: Rubik;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
   justify-content: space-between;
 }
 
 .order-wrapper button {
-    display: flex;
-width: 100%;
-flex-direction: column;
-align-items: center;
-gap: 10px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 
-border-radius: 8px;
-background: var(--Dark-Gray, #232321);
+  border-radius: 8px;
+  background: var(--Dark-Gray, #232321);
 
-color: var(--Pure-White, #FFF);
-font-family: Rubik;
-font-size: 14px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-letter-spacing: 0.25px;
-text-transform: uppercase;
-padding: 10px;
+  color: var(--Pure-White, #fff);
+  font-family: Rubik;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.25px;
+  text-transform: uppercase;
+  padding: 10px;
 }
 
-
 @media (max-width: 768px) {
-  .order-wrapper{
+  .order-wrapper {
     width: 60vw;
     display: flex;
     align-items: center;
   }
 
-  .order-table{
+  .order-table {
     width: 50vw;
   }
 }
-
-
 
 @media (max-width: 480px) {
   .recommend-header button {
     padding: 8px 8px;
   }
 }
-    
