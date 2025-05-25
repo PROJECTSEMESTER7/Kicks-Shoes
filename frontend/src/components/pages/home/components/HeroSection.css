@@ -5,6 +5,7 @@
 .hero-preview-wrapper {
   position: relative;
   display: inline-block;
+  width: 100%;
 }
 
 .thumbnail-preview {
@@ -74,6 +75,7 @@
   justify-content: center;
   align-items: center;
   gap: 4px;
+  border: none;
   /* align-self: stretch; */
 }
 
@@ -153,7 +155,7 @@
   }
 
   .right-stick {
-   display: none;
+    display: none;
   }
 
   .text p {

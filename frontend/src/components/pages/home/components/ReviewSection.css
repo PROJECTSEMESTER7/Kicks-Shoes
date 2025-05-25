@@ -22,6 +22,14 @@
 }
 
 .review-header button {
+  color: var(--Pure-White, #fff);
+  font-family: Rubik;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.25px;
+  text-transform: uppercase;
   border-radius: 8px;
   background: var(--Blue, #4a69e2);
   display: flex;
@@ -30,9 +38,7 @@
   justify-content: center;
   align-items: center;
   gap: 4px;
-  align-self: stretch;
-  text-transform: uppercase;
-  color: #fff;
+  border: none;
 }
 
 /* .review-list {

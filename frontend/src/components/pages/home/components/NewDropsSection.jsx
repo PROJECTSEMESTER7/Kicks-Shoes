@@ -2,6 +2,7 @@ import "./NewDropsSection.css";
 import ProductCard from "../../../common/components/ProductCard";
 import { useEffect, useState } from "react";
 import { newProducts } from "../../../../data/homepageData";
+import { Button } from "antd";
 
 export const NewDropsSection = () => {
   const [newDrops, setNewDrops] = useState([]);
@@ -15,7 +16,7 @@ export const NewDropsSection = () => {
           <span className="line">Don’t miss out </span>
           <span className="line">new drops</span>
         </h4>
-        <button>Shop new drops</button>
+        <Button>Shop new drops</Button>
       </div>
 
       <div className="new-drops-list">
