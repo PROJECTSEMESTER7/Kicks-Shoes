@@ -15,9 +15,11 @@ import ProductDetails from "./components/pages/dashboard/ProductDetails";
 import DiscountListPage from "./components/pages/dashboard/DiscountListPage";
 import ChatPage from "./components/pages/dashboard/ChatPage";
 import UserManagementPage from "./components/pages/dashboard/UserManagementPage";
+import CheckoutPage from "./components/pages/checkout/CheckOut";
 import Login from "./components/pages/authentication/pages/Login";
 import RegisterPage from "./components/pages/authentication/pages/Register";
 import LoginAdmin from "./components/pages/authentication/pages/LoginAdmin";
+import CartPage from "./components/pages/cart/pages/CartPage";
 import ListingPage from "./components/pages/home/pages/ListingPage";
 
 const router = createBrowserRouter([
@@ -31,8 +33,16 @@ const router = createBrowserRouter([
         element: <HomePage />
       },
       {
+        path: "checkout",
+        element: <CheckoutPage />,
+      },
+      {
         path: "login",
         element: <Login />
+      },
+      {
+        path: "cart",
+        element: <CartPage />,
       },
       {
         path: "login-admin",
