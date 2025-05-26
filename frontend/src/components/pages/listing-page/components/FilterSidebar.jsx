@@ -6,6 +6,7 @@ import ColorPanel from "./ColorPanel";
 import CategoryPanel from "./CategoryPanel";
 import GenderPanel from "./GenderPanel";
 import PricePanel from "./PricePanel";
+import { useState } from "react";
 
 const { Panel } = Collapse;
 
@@ -17,6 +18,14 @@ const FilterSidebar = ({
   genders,
   priceRange
 }) => {
+  const [selectedSize, setSelectedSize] = useState(null);
+
+  const handleSelectSize = (size) => {
+    setSelectedSize(size);
+    if (onSizeChange) {
+      onSizeChange(size);
+    }
+  };
   return (
     <div className="filter-sidebar">
       <h2 className="filter-sidebar__title">Filters</h2>
@@ -27,7 +36,11 @@ const FilterSidebar = ({
         </Panel>
 
         <Panel header="SIZE" key="2">
-          <SizePanel sizes={sizes} />
+          <SizePanel
+            sizes={sizes}
+            selectedSize={selectedSize}
+            onSizeSelect={handleSelectSize}
+          />
         </Panel>
 
         <Panel header="COLOR" key="3">

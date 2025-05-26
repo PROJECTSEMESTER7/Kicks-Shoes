@@ -1,8 +1,7 @@
-import { useState } from "react";
+// SizePanel.jsx
+import React from "react";
 
-const SizePanel = ({ sizes }) => {
-  const [selectedSize, setSelectedSize] = useState(null);
-
+const SizePanel = ({ sizes, selectedSize, onSizeSelect }) => {
   return (
     <div className="filter-size-grid">
       {sizes.map((size) => (
@@ -11,7 +10,7 @@ const SizePanel = ({ sizes }) => {
           className={`size-button ${
             selectedSize === size.value ? "active" : ""
           }`}
-          onClick={() => setSelectedSize(size.value)}
+          onClick={() => onSizeSelect(size.value)}
           disabled={size.disabled}
         >
           {size.value}
