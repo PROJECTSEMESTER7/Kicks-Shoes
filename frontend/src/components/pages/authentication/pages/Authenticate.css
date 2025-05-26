@@ -340,8 +340,9 @@ span.ant-checkbox-label {
   color: #232321;
   font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
+  padding: 6px;
 }
 
 /* Responsive */

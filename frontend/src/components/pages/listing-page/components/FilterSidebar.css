@@ -1,6 +1,6 @@
 .filter-sidebar {
   width: 240px;
-  background-color: #E7E7E3;
+  background-color: #e7e7e3;
   padding: 24px;
   border-radius: 12px;
   font-family: "Poppins", sans-serif;
@@ -66,4 +66,14 @@
 
 .color-button.selected {
   border-color: black;
+}
+
+span.ant-collapse-header-text {
+  color: var(--Dark-Gray, #232321);
+  font-family: Rubik;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
 }
