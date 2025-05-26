@@ -20,7 +20,8 @@ import Login from "./components/pages/authentication/pages/Login";
 import RegisterPage from "./components/pages/authentication/pages/Register";
 import LoginAdmin from "./components/pages/authentication/pages/LoginAdmin";
 import CartPage from "./components/pages/cart/pages/CartPage";
-import ListingPage from "./components/pages/home/pages/ListingPage";
+import ListingPage from "./components/pages/listing-page/pages/ListingPage";
+import ProductDetailPage from "./components/pages/product/pages/ProductDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "listing-page",
         element: <ListingPage />
+      },
+      {
+        path: "product/:id",
+        element: <ProductDetailPage />
       },
       {
         path: "dashboard",

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Pagination } from "antd";
 import { getProducts, getTotalProducts } from "../../../../data/mockData";
-import FilterSidebar from "../../../common/components/FilterSidebar";
+import FilterSidebar from "../components/FilterSidebar";
 import ProductCard from "../../../common/components/ProductCard";
 
 const ListingPage = () => {

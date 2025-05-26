@@ -1,0 +1,128 @@
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.release-tag {
+  width: fit-content;
+  font-weight: 500;
+}
+
+.product-name {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.product-price {
+  color: #1677ff;
+  font-weight: 600;
+}
+
+.variant-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.variant-label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.color-options {
+  display: flex;
+  gap: 12px;
+}
+
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.color-swatch.active {
+  border: 2px solid #1677ff;
+  box-shadow: 0 0 0 2px #e6f4ff;
+}
+
+.size-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.size-chart-link {
+  font-size: 14px;
+  color: #1677ff;
+  text-decoration: none;
+}
+
+.size-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.size-btn {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.size-btn.active {
+  border-color: #1677ff;
+  background-color: #f0f8ff;
+}
+
+.product-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.add-to-cart-btn {
+  background-color: #1677ff !important;
+  font-weight: 600;
+}
+
+.buy-now-btn {
+  border: 1px solid #000;
+  font-weight: 600;
+}
+
+.product-description {
+  font-size: 14px;
+  color: #555;
+}
+
+.summary-text {
+  color: #777;
+}
+
+.benefit-list {
+  margin-top: 8px;
+  padding-left: 20px;
+}
+.product-tags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.release-tag {
+  font-weight: 500;
+}
+
+.sale-tag {
+  font-weight: 500;
+}

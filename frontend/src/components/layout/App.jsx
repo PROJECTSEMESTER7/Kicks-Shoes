@@ -2,6 +2,7 @@ import { ConfigProvider } from "antd";
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "./../common/components/Footer";
 import AppHeader from "./../common/components/Header";
+import ScrollToTop from "../../utils/ScrollToTop";
 
 function App() {
   const location = useLocation();
@@ -14,7 +15,7 @@ function App() {
         components: {
           Menu: {
             itemSelectedColor: "white",
-            itemSelectedBg: "#4A69E2",
+            itemSelectedBg: "#4A69E2"
           },
           Button: {
             defaultBg: "#ffffff",
@@ -29,15 +30,16 @@ function App() {
             defaultFocusColor: "#000000",
             outline: "none",
             outlineWidth: 0,
-            defaultShadow: "none",
+            defaultShadow: "none"
           },
           Pagination: {
-            itemSize: 38,
-          },
-        },
+            itemSize: 38
+          }
+        }
       }}
     >
       <div>
+        <ScrollToTop />
         {!isDashboard && !isLoginAdmin && <AppHeader />}
         <Outlet />
         {!isDashboard && !isLoginAdmin && <Footer />}
