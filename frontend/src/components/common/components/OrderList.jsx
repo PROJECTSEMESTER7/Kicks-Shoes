@@ -1,9 +1,9 @@
 import { Pagination } from "antd";
-import TableOrders from "./components/TableOrders";
-import TabHeader from "./components/TabHeader";
-import { getOrders, getTotalOrders } from "../../../data/mockData";
 import { useContext, useEffect, useState } from "react";
-import { ActiveTabContext } from "./Dashboard";
+import { getOrders, getTotalOrders } from "../../../data/mockData";
+import TableOrders from "../../pages/dashboard/components/TableOrders";
+import { ActiveTabContext } from "../../pages/dashboard/Dashboard";
+import TabHeader from "./TabHeader";
 
 const OrderList = () => {
   const [currentPage, setCurrentPage] = useState(1);

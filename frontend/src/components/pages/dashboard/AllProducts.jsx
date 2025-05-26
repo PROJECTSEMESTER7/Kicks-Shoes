@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Button, Row, Col, Pagination } from "antd";
 import "./dashboard.css";
 import ProductCard from "./components/ProductCard";
-import TabHeader from "./components/TabHeader";
+import TabHeader from "../../common/components/TabHeader";
 import { ActiveTabContext } from "./Dashboard";
 import { getProducts, getTotalProducts } from "../../../data/mockData";
 

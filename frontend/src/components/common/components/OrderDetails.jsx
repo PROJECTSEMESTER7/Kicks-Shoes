@@ -1,26 +1,26 @@
-import React, { useContext, useEffect } from "react";
 import {
-  Card,
-  Button,
-  Tag,
-  Table,
-  Avatar,
-  Input,
-  Select,
-  DatePicker,
-  Row,
-  Col,
-} from "antd";
-import {
-  UserOutlined,
-  HomeOutlined,
   CreditCardOutlined,
   DownloadOutlined,
+  HomeOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
+import {
+  Avatar,
+  Button,
+  Card,
+  Col,
+  DatePicker,
+  Input,
+  Row,
+  Select,
+  Table,
+  Tag,
+} from "antd";
 import dayjs from "dayjs";
-import { ActiveTabContext } from "./Dashboard";
+import { useContext, useEffect } from "react";
+import { ActiveTabContext } from "../../pages/dashboard/Dashboard";
 import "./order-details.css";
-import TabHeader from "./components/TabHeader";
+import TabHeader from "./TabHeader";
 
 const { Option } = Select;
 
