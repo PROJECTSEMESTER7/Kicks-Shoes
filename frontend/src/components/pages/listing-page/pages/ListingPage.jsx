@@ -6,7 +6,7 @@ import ProductCard from "../../../common/components/ProductCard";
 
 const ListingPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 8;
+  const pageSize = 9;
   const currentProducts = getProducts(currentPage, pageSize);
   const totalProducts = getTotalProducts();
 
@@ -28,7 +28,7 @@ const ListingPage = () => {
           { value: 44 },
           { value: 45 },
           { value: 46 },
-          { value: 47 }
+          { value: 47 },
         ]}
         colors={[
           "#5475FB",
@@ -40,7 +40,7 @@ const ListingPage = () => {
           "#C4C4C4",
           "#747E8A",
           "#92552A",
-          "#B37245"
+          "#B37245",
         ]}
         categories={[
           "Casual shoes",
@@ -49,7 +49,7 @@ const ListingPage = () => {
           "Sneaker",
           "Basketball",
           "Golf",
-          "Outdoor"
+          "Outdoor",
         ]}
         genders={["Men", "Women"]}
         priceRange={[0, 1000]}
@@ -61,7 +61,7 @@ const ListingPage = () => {
             display: "flex",
             flexWrap: "wrap",
             gap: 24,
-            justifyContent: "center"
+            justifyContent: "center",
           }}
         >
           {currentProducts.map((product) => (
@@ -73,7 +73,7 @@ const ListingPage = () => {
           style={{
             display: "flex",
             justifyContent: "center",
-            marginTop: 32
+            marginTop: 32,
           }}
         >
           <Pagination
