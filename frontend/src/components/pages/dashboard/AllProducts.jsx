@@ -3,7 +3,7 @@ import { Button, Row, Col, Pagination } from "antd";
 import "./dashboard.css";
 import ProductCard from "./components/ProductCard";
 import TabHeader from "../../common/components/TabHeader";
-import { ActiveTabContext } from "./Dashboard";
+import { ActiveTabContext } from "../../common/components/ActiveTabContext"; 
 import { getProducts, getTotalProducts } from "../../../data/mockData";
 
 export default function AllProducts() {

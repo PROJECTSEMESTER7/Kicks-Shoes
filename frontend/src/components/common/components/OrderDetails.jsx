@@ -18,7 +18,7 @@ import {
 } from "antd";
 import dayjs from "dayjs";
 import { useContext, useEffect } from "react";
-import { ActiveTabContext } from "../../pages/dashboard/Dashboard";
+import { ActiveTabContext } from "./ActiveTabContext";
 import "./order-details.css";
 import TabHeader from "./TabHeader";
 
@@ -118,7 +118,7 @@ const columns = [
   },
 ];
 
-export default function OrderDetails() {
+export default function OrderDetails({ dashboard = false }) {
   const { setActiveTab } = useContext(ActiveTabContext);
 
   useEffect(() => {
@@ -217,6 +217,7 @@ export default function OrderDetails() {
           </Col>
         </Row>
 
+        {!dashboard && (
         <div className="order-details-actions">
           <Button block>View Customer Profile</Button>
           <Button icon={<DownloadOutlined />} block>
@@ -224,6 +225,7 @@ export default function OrderDetails() {
           </Button>
           <Button block>View Delivery Address</Button>
         </div>
+        )}
 
         <div className="order-details-products">
           <div className="order-details-products-title">Products</div>

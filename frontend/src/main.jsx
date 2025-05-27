@@ -22,12 +22,13 @@ import HomePage from "./components/pages/home/pages/HomePage";
 import ListingPage from "./components/pages/listing-page/pages/ListingPage";
 import ProductDetailPage from "./components/pages/product/pages/ProductDetailPage";
 import "./styles/index.css";
+import Account from "./components/pages/account/Account";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
     children: [
       {
         path: "",
@@ -100,6 +101,28 @@ const router = createBrowserRouter([
           {
             path: "users",
             element: <UserManagementPage />
+          }
+        ]
+      },
+      {
+        path: "account",
+        element: <Account />,
+        children: [
+          {
+            path: "null",
+            element: <>null</>
+          },
+          {
+            path: "orders",
+            element: <OrderList />
+          },
+          {
+            path: "orders/:orderId",
+            element: <OrderDetails />
+          },
+          {
+            path: "chat",
+            element: <ChatPage />
           }
         ]
       }

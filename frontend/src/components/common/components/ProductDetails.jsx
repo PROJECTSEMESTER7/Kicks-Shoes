@@ -12,7 +12,7 @@ import {
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import productImg from "../../../assets/images/nikeproduct.png";
-import { ActiveTabContext } from "../../pages/dashboard/Dashboard";
+import { ActiveTabContext } from "./ActiveTabContext";
 import "./order-details.css";
 import "./product-details.css";
 import TabHeader from "./TabHeader";

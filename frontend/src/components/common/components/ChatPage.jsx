@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { Input, Button, List, Avatar, Typography, Badge } from "antd";
 import { SendOutlined, UserOutlined, SearchOutlined } from "@ant-design/icons";
 import TabHeader from "./TabHeader";
-import { ActiveTabContext } from "../../pages/dashboard/Dashboard";
+import { ActiveTabContext } from "./ActiveTabContext";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import ReactMarkdown from "react-markdown";
 

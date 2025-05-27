@@ -2,8 +2,7 @@ import { useState, createContext } from "react";
 import { Layout } from "antd";
 import { Outlet, useLocation } from "react-router-dom";
 import Sidebar from "../../common/components/Sidebar";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import { ActiveTabContext } from "../../common/components/ActiveTabContext";
 import {
   DashboardOutlined,
   AppstoreOutlined,
@@ -11,9 +10,8 @@ import {
   MessageOutlined,
 } from "@ant-design/icons";
 
-const { Content } = Layout;
 
-export const ActiveTabContext = createContext();
+const { Content } = Layout;
 
 const accountTabs = [
   { key: "1", name: "My Account", icon: <DashboardOutlined />, path: "/account" },
@@ -25,17 +23,16 @@ const accountTabs = [
 export default function Account() {
   const [activeTab, setActiveTab] = useState("1");
   const location = useLocation();
+console.log(location.pathname);
 
   return (
     <ActiveTabContext.Provider value={{ activeTab, setActiveTab }}>
       <Layout style={{ minHeight: "100vh" }}>
         <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} tabs={accountTabs}/>
         <Layout>
-          <Header />
           <Content style={{ margin: "24px 16px 0" }}>
             <Outlet />
           </Content>
-          <Footer />
         </Layout>
       </Layout>
     </ActiveTabContext.Provider>
