@@ -118,7 +118,7 @@ const columns = [
   },
 ];
 
-export default function OrderDetails({ dashboard = false }) {
+export default function OrderDetails() {
   const { setActiveTab } = useContext(ActiveTabContext);
 
   useEffect(() => {
@@ -217,7 +217,6 @@ export default function OrderDetails({ dashboard = false }) {
           </Col>
         </Row>
 
-        {!dashboard && (
         <div className="order-details-actions">
           <Button block>View Customer Profile</Button>
           <Button icon={<DownloadOutlined />} block>
@@ -225,7 +224,6 @@ export default function OrderDetails({ dashboard = false }) {
           </Button>
           <Button block>View Delivery Address</Button>
         </div>
-        )}
 
         <div className="order-details-products">
           <div className="order-details-products-title">Products</div>
