@@ -30,7 +30,9 @@ app.use("/api/categories", categoryRoutes);
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({ message: "Something went wrong!" });
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Something went wrong!";
+  res.status(statusCode).json({ message });
 });
 
 const PORT = process.env.PORT || 5000;
