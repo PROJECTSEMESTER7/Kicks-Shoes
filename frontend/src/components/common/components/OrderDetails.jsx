@@ -21,6 +21,7 @@ import { useContext, useEffect } from "react";
 import { ActiveTabContext } from "./ActiveTabContext";
 import "./order-details.css";
 import TabHeader from "./TabHeader";
+import { useLocation } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -118,9 +119,11 @@ const columns = [
   },
 ];
 
+
 export default function OrderDetails() {
   const { setActiveTab } = useContext(ActiveTabContext);
-
+  const location = useLocation();
+  const showActions = location.pathname.includes("/dashboard/orders/");
   useEffect(() => {
     setActiveTab("3");
   }, [setActiveTab]);
@@ -217,6 +220,7 @@ export default function OrderDetails() {
           </Col>
         </Row>
 
+        {showActions && (
         <div className="order-details-actions">
           <Button block>View Customer Profile</Button>
           <Button icon={<DownloadOutlined />} block>
@@ -224,6 +228,7 @@ export default function OrderDetails() {
           </Button>
           <Button block>View Delivery Address</Button>
         </div>
+        )}
 
         <div className="order-details-products">
           <div className="order-details-products-title">Products</div>
