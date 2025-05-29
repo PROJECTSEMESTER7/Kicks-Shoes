@@ -27,7 +27,11 @@ const OrderList = () => {
   return (
     <>
       <TabHeader breadcrumb="Order List" />
-      <TableOrders title="Recent Purchases" orders={currentOrders} dashboard={isDashboard} />
+      <TableOrders
+        title="Recent Purchases"
+        orders={currentOrders}
+        dashboard={isDashboard}
+      />
       <div className="pagination-container">
         <Pagination
           current={currentPage}
