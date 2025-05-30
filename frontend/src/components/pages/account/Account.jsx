@@ -8,7 +8,7 @@ import {
   DashboardOutlined,
   AppstoreOutlined,
   UnorderedListOutlined,
-  MessageOutlined
+  MessageOutlined,
 } from "@ant-design/icons";
 
 const { Content } = Layout;
@@ -18,16 +18,16 @@ const accountTabs = [
     key: "1",
     name: "My Account",
     icon: <DashboardOutlined />,
-    path: "/account"
+    path: "/account",
   },
   { key: "2", name: "Null", icon: <AppstoreOutlined />, path: "/account/null" },
   {
     key: "3",
     name: "Order List",
     icon: <UnorderedListOutlined />,
-    path: "/account/orders"
+    path: "/account/orders",
   },
-  { key: "4", name: "Chat", icon: <MessageOutlined />, path: "/account/chat" }
+  { key: "4", name: "Chat", icon: <MessageOutlined />, path: "/account/chat" },
 ];
 
 export default function Account() {
