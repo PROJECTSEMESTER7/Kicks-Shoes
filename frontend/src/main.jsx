@@ -42,6 +42,9 @@ import EmailVerificationFailed from "./components/pages/authentication/pages/Ema
 import EmailVerified from "./components/pages/authentication/pages/EmailVerified";
 import EmailVerification from "./components/pages/authentication/pages/EmailVerification";
 
+const userInfo = localStorage.getItem("userInfo");
+const user = userInfo ? JSON.parse(userInfo) : null;
+
 const router = createBrowserRouter([
   {
     path: "/",
