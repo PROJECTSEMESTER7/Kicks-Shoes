@@ -2,6 +2,63 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
+// Add request interceptor
+axios.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Add response interceptor
+axios.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    // Only handle token expiration (401) for non-auth endpoints
+    if (
+      error.response?.status === 401 &&
+      !originalRequest._retry &&
+      !originalRequest.url.includes("/refresh-token") &&
+      !originalRequest.url.includes("/change-password") &&
+      !originalRequest.url.includes("/login")
+    ) {
+      originalRequest._retry = true;
+      try {
+        const refreshToken = localStorage.getItem("refreshToken");
+        if (!refreshToken) {
+          throw new Error("No refresh token available");
+        }
+
+        const response = await axios.post(`${API_URL}/api/auth/refresh-token`, {
+          refreshToken,
+        });
+
+        if (response.data.success) {
+          const { accessToken } = response.data.data;
+          localStorage.setItem("accessToken", accessToken);
+          originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+          return axios(originalRequest);
+        }
+      } catch (refreshError) {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("userInfo");
+        window.location.href = "/login";
+        return Promise.reject(refreshError);
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 const authService = {
   // Register new user
   async register(userData) {
@@ -121,12 +178,12 @@ const authService = {
   },
 
   // Change password
-  async changePassword(passwordData) {
+  async changePassword(currentPassword, newPassword) {
     try {
       const token = this.getAccessToken();
       const response = await axios.put(
         `${API_URL}/api/auth/change-password`,
-        passwordData,
+        { currentPassword, newPassword },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -148,10 +205,51 @@ const authService = {
     return response.data;
   },
 
-  // Reset password
-  async resetPassword(resetData) {
-    const response = await axios.post("/auth/reset-password", resetData);
-    return response.data;
+  // Request password reset
+  async requestPasswordReset(email) {
+    try {
+      const response = await axios.post(`${API_URL}/api/auth/forgot-password`, {
+        email,
+      });
+      if (response.data.success) {
+        return response.data.data;
+      }
+      throw new Error(
+        response.data.message || "Failed to send reset instructions"
+      );
+    } catch (error) {
+      console.error(
+        "Password reset request error:",
+        error.response?.data || error.message
+      );
+      if (error.response?.data?.message) {
+        throw new Error(error.response.data.message);
+      }
+      throw error;
+    }
+  },
+
+  // Reset password with token
+  async resetPassword(token, newPassword) {
+    try {
+      const response = await axios.post(`${API_URL}/api/auth/reset-password`, {
+        token,
+        newPassword,
+      });
+      if (response.data.success) {
+        return response.data.data;
+      }
+      throw new Error(response.data.message || "Password reset failed");
+    } catch (error) {
+      console.error(
+        "Password reset error:",
+        error.response?.data || error.message
+      );
+      if (error.response?.data?.message) {
+        throw new Error(error.response.data.message);
+      }
+      throw error;
+    }
   },
 
   // Verify email
@@ -162,7 +260,12 @@ const authService = {
 
   // Resend verification email
   async resendVerification(email) {
-    const response = await axios.post("/auth/resend-verification", { email });
+    const response = await axios.post(
+      `${API_URL}/api/auth/resend-verification`,
+      {
+        email,
+      }
+    );
     return response.data;
   },
 

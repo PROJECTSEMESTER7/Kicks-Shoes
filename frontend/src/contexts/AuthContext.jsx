@@ -50,9 +50,39 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const changePassword = async (passwordData) => {
+  const changePassword = async (currentPassword, newPassword) => {
     try {
-      const data = await authService.changePassword(passwordData);
+      const data = await authService.changePassword(
+        currentPassword,
+        newPassword
+      );
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const requestPasswordReset = async (email) => {
+    try {
+      const data = await authService.requestPasswordReset(email);
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const resetPassword = async (token, newPassword) => {
+    try {
+      const data = await authService.resetPassword(token, newPassword);
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const resendVerification = async (email) => {
+    try {
+      const data = await authService.resendVerification(email);
       return data;
     } catch (error) {
       throw error;
@@ -67,6 +97,9 @@ export const AuthProvider = ({ children }) => {
     logout,
     updateProfile,
     changePassword,
+    requestPasswordReset,
+    resetPassword,
+    resendVerification,
   };
 
   return (

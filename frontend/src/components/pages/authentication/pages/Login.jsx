@@ -12,9 +12,10 @@ import { useAuth } from "../../../../contexts/AuthContext";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
+  const [resendStatus, setResendStatus] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const { login } = useAuth();
+  const { login, resendVerification } = useAuth();
 
   const from = location.state?.from?.pathname || "/";
 
@@ -26,27 +27,48 @@ const Login = () => {
       navigate(from, { replace: true });
     } catch (error) {
       // Handle specific error cases
-      const errorMessage = error.response?.data?.message;
+      const errorMessage = error.response?.data?.error || error.message;
 
-      if (errorMessage === "Please verify your email before logging in") {
+      if (errorMessage.includes("verify your email")) {
         message.error({
           content: (
             <div>
               <p>Please verify your email before logging in.</p>
               <p>Check your email for verification link or</p>
-              <a href="/resend-verification">
-                Click here to resend verification email
+              <a
+                onClick={() => handleResendVerification(values.email)}
+                style={{
+                  cursor: loading ? "not-allowed" : "pointer",
+                  opacity: loading ? 0.7 : 1,
+                  pointerEvents: loading ? "none" : "auto",
+                }}
+              >
+                {loading
+                  ? "Sending..."
+                  : "Click here to resend verification email"}
               </a>
+              {resendStatus === "success" && (
+                <div style={{ color: "#52c41a", marginTop: 8 }}>
+                  Verification email sent successfully!
+                </div>
+              )}
+              {resendStatus === "error" && (
+                <div style={{ color: "#ff4d4f", marginTop: 8 }}>
+                  Failed to send verification email. Please try again.
+                </div>
+              )}
             </div>
           ),
           duration: 5,
         });
-      } else if (errorMessage === "Invalid credentials") {
+      } else if (
+        errorMessage.includes("Incorrect password") ||
+        errorMessage.includes("Invalid credentials")
+      ) {
         message.error({
           content: (
             <div>
-              <p>Invalid email or password.</p>
-              <p>Please check your credentials and try again.</p>
+              <p>{errorMessage}</p>
               <a href="/forgot-password">Forgot your password?</a>
             </div>
           ),
@@ -57,6 +79,24 @@ const Login = () => {
           errorMessage || "An error occurred during login. Please try again."
         );
       }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResendVerification = async (email) => {
+    try {
+      setLoading(true);
+      setResendStatus(null);
+      await resendVerification(email);
+      setResendStatus("success");
+      message.success("Verification email has been resent successfully!");
+    } catch (error) {
+      setResendStatus("error");
+      message.error(
+        error.response?.data?.message ||
+          "Failed to resend verification email. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -108,7 +148,7 @@ const Login = () => {
               </Form.Item>
 
               <RememberCheckbox />
-              <EmailLoginButton loading={loading} />
+              <EmailLoginButton loading={loading} text="LOGIN" />
 
               <Divider style={{ margin: "0px" }}>Or log in with</Divider>
 

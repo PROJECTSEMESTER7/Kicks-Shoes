@@ -313,6 +313,7 @@ export const updateProfile = async (req, res, next) => {
 export const changePassword = async (req, res, next) => {
   try {
     const { currentPassword, newPassword } = req.body;
+    logger.info("Change password request", req.body);
 
     if (!currentPassword || !newPassword) {
       return next(
@@ -419,9 +420,9 @@ export const forgotPassword = async (req, res, next) => {
  */
 export const resetPassword = async (req, res, next) => {
   try {
-    const { token, password } = req.body;
+    const { token, newPassword } = req.body;
 
-    if (!token || !password) {
+    if (!token || !newPassword) {
       return next(
         new ErrorResponse("Please provide token and new password", 400)
       );
@@ -430,13 +431,15 @@ export const resetPassword = async (req, res, next) => {
     // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded.id);
+    console.log(user);
+    console.log(newPassword);
 
     if (!user) {
       return next(new ErrorResponse("User not found", 404));
     }
 
     // Update password
-    user.password = password;
+    user.password = newPassword;
     await user.save();
 
     logger.info("Password reset successfully", { userId: user._id });

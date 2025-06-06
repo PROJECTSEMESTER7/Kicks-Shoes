@@ -6,6 +6,7 @@ import {
   SearchOutlined,
   UserOutlined,
   LogoutOutlined,
+  LockOutlined,
 } from "@ant-design/icons";
 import { Avatar, Dropdown, Input, Layout, Menu, Button } from "antd";
 import logo from "@assets/Logo.svg";
@@ -128,6 +129,11 @@ const AppHeader = () => {
       label: "Profile",
     },
     {
+      key: "change-password",
+      icon: <LockOutlined />,
+      label: "Change Password",
+    },
+    {
       key: "logout",
       icon: <LogoutOutlined />,
       label: "Logout",
@@ -144,6 +150,8 @@ const AppHeader = () => {
       } catch (error) {
         console.error("Logout error:", error);
       }
+    } else if (key === "change-password") {
+      navigate("/change-password");
     }
   };
 

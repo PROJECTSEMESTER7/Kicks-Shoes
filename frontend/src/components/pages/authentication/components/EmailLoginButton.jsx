@@ -1,17 +1,17 @@
 import React from "react";
 import { Button, Form } from "antd";
 
-const EmailLoginButton = ({ loading }) => {
+const EmailLoginButton = ({ loading, text }) => {
   return (
     <Form.Item>
       <Button
-        type="primary"
+        type="default"
         block
         className="email-login-btn"
         htmlType="submit"
         loading={loading}
       >
-        <span className="email-text">EMAIL LOGIN</span>
+        <span className="email-text">{text}</span>
         <span className="arrow">&rarr;</span>
       </Button>
     </Form.Item>

@@ -19,7 +19,7 @@ const LoginAdmin = () => {
         <Form layout="vertical">
           <LoginHeader />
           <RememberCheckbox />
-          <EmailLoginButton />
+          <EmailLoginButton text="LOGIN" loading={loading} />
           <SocialButton />
           <Term />
         </Form>
