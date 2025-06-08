@@ -28,7 +28,7 @@ import emailRoutes from "./routes/emailRoutes.js";
 import morgan from "morgan";
 import helmet from "helmet";
 import compression from "compression";
-import { errorHandler } from "./middlewares/error.js";
+import { errorHandler } from "./middlewares/error.middleware.js";
 import logger from "./utils/logger.js";
 import { setupUploadDirectories } from "./utils/setupUploads.js";
 

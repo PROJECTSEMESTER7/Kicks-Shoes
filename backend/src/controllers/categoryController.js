@@ -9,7 +9,7 @@
  */
 
 import Category from "../models/Category.js";
-import { asyncHandler } from "../middlewares/asyncHandler.js";
+import { asyncHandler } from "../middlewares/async.middleware.js";
 import { ErrorResponse } from "../utils/errorResponse.js";
 
 // Get all categories

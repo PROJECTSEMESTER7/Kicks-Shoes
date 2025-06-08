@@ -13,9 +13,9 @@ import {
   updateStoreProduct,
   deleteStoreProduct,
 } from "../controllers/storeController.js";
-import { protect } from "../middlewares/auth.js";
-import { requireAdmin } from "../middlewares/roleAuth.js";
-import upload from "../middlewares/uploadMiddleware.js";
+import { protect } from "../middlewares/auth.middleware.js";
+import { requireAdmin, requireShop } from "../middlewares/role.middleware.js";
+import upload from "../middlewares/upload.middleware.js";
 
 const router = express.Router();
 
@@ -26,22 +26,17 @@ router.get("/products", getStoreProducts);
 router.post(
   "/products",
   protect,
-  requireAdmin,
+  requireShop,
   upload.array("images", 5),
   addStoreProduct
 );
 router.put(
   "/products/:productId",
   protect,
-  requireAdmin,
+  requireShop,
   upload.array("images", 5),
   updateStoreProduct
 );
-router.delete(
-  "/products/:productId",
-  protect,
-  requireAdmin,
-  deleteStoreProduct
-);
+router.delete("/products/:productId", protect, requireShop, deleteStoreProduct);
 
 export default router;
