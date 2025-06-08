@@ -58,6 +58,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/stores", storeRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/email", emailRoutes);
+app.use("/api/stores", storeRoutes);
 
 // Error handler
 app.use(errorHandler);

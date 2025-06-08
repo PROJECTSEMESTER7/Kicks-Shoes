@@ -47,3 +47,27 @@ export const updateStore = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Delete store
+export const deleteStore = async (req, res) => {
+  try {
+    const store = await Store.findByIdAndDelete(req.params.id);
+    if (!store) {
+      return res.status(404).json({ message: "Store not found" });
+    }
+    res.status(200).json({ message: "Store deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+// Create new store
+export const createStore = async (req, res) => {
+  try {
+    const store = new Store(req.body);
+    await store.save();
+    res.status(201).json(store);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
