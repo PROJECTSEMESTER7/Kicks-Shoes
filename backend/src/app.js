@@ -26,6 +26,7 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import emailRoutes from "./routes/emailRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 import morgan from "morgan";
 import helmet from "helmet";
 import compression from "compression";
@@ -74,6 +75,7 @@ app.use("/api/shop", shopRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/email", emailRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/products", productRoutes);
 
 // Error handler
 app.use(errorHandler);

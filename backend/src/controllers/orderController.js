@@ -306,8 +306,8 @@ export const refundOrder = async (req, res, next) => {
   }
 };
 
-// Export all controller functions as a single object
-export const orderController = {
+// Export all routes
+export const orderRoutes = {
   createOrder,
   getOrders,
   getOrderById,

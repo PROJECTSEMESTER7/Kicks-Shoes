@@ -14,16 +14,13 @@ import logger from "../utils/logger.js";
 /**
  * Service class for handling order operations
  */
-class OrderService {
+export class OrderService {
   /**
    * Create a new order
    * @param {Object} orderData - Order data
    * @returns {Promise<Order>} The created order
    */
   static async createOrder(orderData) {
-    const session = await mongoose.startSession();
-    session.startTransaction();
-
     try {
       logger.info("Creating order:", { orderData });
       const { user, products, totalAmount, paymentMethod, shippingAddress } =
@@ -47,45 +44,60 @@ class OrderService {
         throw new Error("Invalid total amount");
       }
 
-      const orderItems = await Promise.all(
-        products.map(async (product) => {
-          const orderItem = new OrderItem({
-            product: product.id,
-            quantity: product.quantity,
-            price: product.price,
-            size: product.size,
-            color: product.color,
-            subtotal: product.price * product.quantity,
-          });
-          await orderItem.save({ session });
-          return orderItem._id;
-        })
-      );
+      // Calculate total price from products
+      const calculatedTotal = products.reduce((sum, product) => {
+        return sum + product.price * product.quantity;
+      }, 0);
 
+      // Validate total amount matches calculated total
+      if (Math.abs(calculatedTotal - totalAmount) > 0.01) {
+        throw new Error("Total amount does not match sum of items");
+      }
+
+      // Create order first with empty items array
       const order = new Order({
         user,
-        items: orderItems,
-        totalPrice: totalAmount,
+        items: [],
+        totalPrice: calculatedTotal,
         paymentMethod,
         shippingAddress,
         status: "pending",
         paymentStatus: "pending",
       });
 
-      await order.save({ session });
-      await session.commitTransaction();
+      // Save order to get its ID
+      await order.save();
+
+      // Create order items with order reference
+      const orderItems = await Promise.all(
+        products.map(async (product) => {
+          const subtotal = product.price * product.quantity;
+          const orderItem = new OrderItem({
+            order: order._id, // Add order reference
+            product: product.id,
+            quantity: product.quantity,
+            price: product.price,
+            size: product.size,
+            color: product.color,
+            subtotal: subtotal,
+          });
+          await orderItem.save();
+          return orderItem._id;
+        })
+      );
+
+      // Update order with order items
+      order.items = orderItems;
+      await order.save();
 
       logger.info("Order created successfully", { orderId: order._id });
       return order;
     } catch (error) {
-      await session.abortTransaction();
       logger.error("Error creating order:", {
         error: error.message,
         stack: error.stack,
       });
       throw new Error(`Failed to create order: ${error.message}`);
-    } finally {
-      session.endSession();
     }
   }
 
@@ -330,5 +342,3 @@ class OrderService {
     }
   }
 }
-
-export { OrderService };
