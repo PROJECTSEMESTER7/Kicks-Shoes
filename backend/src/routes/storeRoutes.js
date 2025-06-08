@@ -58,5 +58,12 @@ router.delete(
 
 // Admin routes
 router.delete("/admin/:id", protect, requireAdmin, deleteStore);
+router.route("/").get(getStores);// Get all stores
+
+router.route("/:id").get(getStoreById).put(updateStore);// Get store by id and update store
+
+router.route("/:id/delete").delete(deleteStore);// Delete store
+
+router.route("/create").post(createStore);// Create store
 
 export default router;
