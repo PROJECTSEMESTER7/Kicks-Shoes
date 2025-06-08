@@ -26,14 +26,14 @@ router.get("/products", getStoreProducts);
 router.post(
   "/products",
   protect,
-  requireShop,
+  requireAdmin,
   upload.array("images", 5),
   addStoreProduct
 );
 router.put(
   "/products/:productId",
   protect,
-  requireShop,
+  requireAdmin,
   upload.array("images", 5),
   updateStoreProduct
 );
