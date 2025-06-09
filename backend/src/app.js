@@ -27,6 +27,7 @@ import authRoutes from "./routes/authRoutes.js";
 import emailRoutes from "./routes/emailRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import storeRoutes from "./routes/storeRoutes.js";
 import morgan from "morgan";
 import helmet from "helmet";
 import compression from "compression";
@@ -81,7 +82,7 @@ app.use("/api/products", productRoutes);
 // Error handler
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   logger.info(`Server is running on port ${PORT}`);
