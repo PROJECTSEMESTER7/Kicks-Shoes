@@ -44,7 +44,7 @@ router.delete(
  * @desc    Create multiple products
  * @access  Private
  */
-router.get(
+router.post(
   "/bulk",
   protect,
   requireRoles("admin", "shop"),

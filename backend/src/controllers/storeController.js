@@ -13,7 +13,7 @@ import Product from "../models/Product.js";
 import { ErrorResponse } from "../utils/errorResponse.js";
 import logger from "../utils/logger.js";
 import Store from "../models/Store.js";
-
+import { StoreService } from "../services/store.service.js";
 // Get shop products
 export const getStoreProducts = async (req, res, next) => {
   try {
@@ -122,15 +122,32 @@ export const deleteStore = async (req, res) => {
 }
 
 // Create new store
-export const createStore = async (req, res) => {
+export const createStore = async (req, res, next) => {
   try {
-    const store = new Store(req.body);
-    await store.save();
-    res.status(201).json(store);
+    logger.info("Creating new store", { storeData: req.body });
+    const store = await StoreService.createStore(req.body);
+
+    logger.info("Store created successfully", { storeId: store._id });
+
+    res.status(201).json({
+      success: true,
+      data: store,
+    });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    logger.error("Error creating store", { error: error.message });
+    // Handle Mongoose validation errors
+    if (error.name === "ValidationError") {
+      return res.status(400).json({
+        success: false,
+        errors: Object.values(error.errors).map((err) => ({
+          field: err.path,
+          message: err.message,
+        })),
+      });
+    }
+    next(new ErrorResponse(error.message, 500));
   }
-}
+};
 
 export const getStoreById = async (req, res) => {
   try {
