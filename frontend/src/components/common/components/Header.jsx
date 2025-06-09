@@ -5,12 +5,16 @@ import {
   MenuOutlined,
   SearchOutlined,
   UserOutlined,
+  LogoutOutlined,
+  LockOutlined,
+  ShoppingCartOutlined,
 } from "@ant-design/icons";
-import { Avatar, Dropdown, Input, Layout, Menu, Button } from "antd";
+import { Avatar, Dropdown, Input, Layout, Menu, Button, Modal } from "antd";
 import logo from "@assets/Logo.svg";
 import "./Header.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { getAllProducts } from "../../../data/mockData";
+import { useAuth } from "../../../contexts/AuthContext";
 
 const { Header } = Layout;
 
@@ -21,6 +25,7 @@ const NotificationBadgeOnly = ({ count = 0 }) => (
 const products = getAllProducts();
 
 const AppHeader = () => {
+  const { logout, user } = useAuth();
   const [isMobile, setIsMobile] = useState(false);
   const [search, setSearch] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
@@ -30,6 +35,11 @@ const AppHeader = () => {
   const wrapperRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const isLoggedIn = localStorage.getItem("userInfo") ? true : false;
+
+  useEffect(() => {
+    console.log("Current user:", user); // Debug log
+  }, [user]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -113,9 +123,52 @@ const AppHeader = () => {
     }
   };
 
-  const handleClickAvatar = () => {
-    console.log("Avatar clicked");
-    navigate(`/account`);
+  const avatarMenuItems = [
+    {
+      key: "profile",
+      icon: <UserOutlined />,
+      label: "Profile",
+    },
+    {
+      key: "change-password",
+      icon: <LockOutlined />,
+      label: "Change Password",
+    },
+    {
+      key: "logout",
+      icon: <LogoutOutlined />,
+      label: "Logout",
+    },
+  ];
+
+  const handleAvatarMenuClick = ({ key }) => {
+    if (key === "profile") {
+      navigate("/account");
+    } else if (key === "logout") {
+      try {
+        logout();
+        navigate("/login");
+      } catch (error) {
+        console.error("Logout error:", error);
+      }
+    } else if (key === "change-password") {
+      navigate("/change-password");
+    }
+  };
+
+  const renderAvatar = () => {
+    console.log("Rendering avatar for user:", user); // Debug log
+    if (user && user.avatar) {
+      return <Avatar src={user.avatar} className="header-avatar" />;
+    } else if (user && user.name) {
+      return (
+        <Avatar className="header-avatar">
+          {user.name.charAt(0).toUpperCase()}
+        </Avatar>
+      );
+    } else {
+      return <Avatar icon={<UserOutlined />} className="header-avatar" />;
+    }
   };
 
   return (
@@ -173,12 +226,17 @@ const AppHeader = () => {
                 allowClear
               />
             )}
-            <div
-              onClick={handleClickAvatar}
-              style={{ display: "inline-block", cursor: "pointer" }}
+            <Dropdown
+              menu={{
+                items: avatarMenuItems,
+                onClick: handleAvatarMenuClick,
+              }}
+              trigger={["click"]}
             >
-              <Avatar icon={<UserOutlined />} className="header-avatar" />
-            </div>
+              <div style={{ display: "inline-block", cursor: "pointer" }}>
+                {renderAvatar()}
+              </div>
+            </Dropdown>
           </>
         ) : (
           <>
@@ -260,12 +318,23 @@ const AppHeader = () => {
                 </Button>
               </div>
             )}
-            <div
-              onClick={handleClickAvatar}
-              style={{ display: "inline-block", cursor: "pointer" }}
-            >
-              <Avatar icon={<UserOutlined />} className="header-avatar" />
-            </div>
+            {isLoggedIn ? (
+              <Dropdown
+                menu={{
+                  items: avatarMenuItems,
+                  onClick: handleAvatarMenuClick,
+                }}
+                trigger={["click"]}
+              >
+                <div style={{ display: "inline-block", cursor: "pointer" }}>
+                  {renderAvatar()}
+                </div>
+              </Dropdown>
+            ) : (
+              <div onClick={() => navigate("/login")}>
+                <UserOutlined style={{ fontSize: 20, cursor: "pointer" }} />
+              </div>
+            )}
             <div
               style={{
                 display: "inline-flex",
@@ -274,11 +343,13 @@ const AppHeader = () => {
                 width: 28,
                 height: 28,
                 borderRadius: "50%",
-                background: "#ff9800",
                 marginLeft: 12,
+                fontSize: 20,
+                cursor: "pointer",
               }}
+              onClick={() => navigate("/cart")}
             >
-              <NotificationBadgeOnly count={8} />
+              <ShoppingCartOutlined />
             </div>
           </>
         )}

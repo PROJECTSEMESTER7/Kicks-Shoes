@@ -10,19 +10,6 @@ import mongoose from "mongoose";
 
 const storeSchema = new mongoose.Schema(
   {
-    // owner_id: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "User",
-    //   required: [true, "Store owner is required"],
-    //   index: true,
-    //   validate: {
-    //     validator: async (value) => {
-    //       const user = await mongoose.model("User").findById(value)
-    //       return user && (user.role === "shop" || user.role === "admin")
-    //     },
-    //     message: "Only users with 'shop' or 'admin' role can own a store",
-    //   },
-    // },
     name: {
       type: String,
       required: [true, "Store name is required"],

@@ -27,6 +27,11 @@ const userSchema = new mongoose.Schema(
       minlength: [3, "Username must be at least 3 characters long"],
       maxlength: [30, "Username cannot exceed 30 characters"],
     },
+    aboutMe: {
+      type: String,
+      trim: true,
+      maxlength: [500, "About me cannot exceed 500 characters"],
+    },
     email: {
       type: String,
       required: [true, "Email is required"],
@@ -55,7 +60,8 @@ const userSchema = new mongoose.Schema(
     },
     avatar: {
       type: String,
-      default: "default-avatar.png",
+      default:
+        "https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png",
     },
     address: {
       type: String,
@@ -70,6 +76,18 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 0,
       min: [0, "Reward points cannot be negative"],
+    },
+    dateOfBirth: {
+      type: Date,
+      default: null,
+    },
+    gender: {
+      type: String,
+      enum: {
+        values: ["male", "female", "other"],
+        message: "{VALUE} is not a valid gender",
+      },
+      default: "other",
     },
     status: {
       type: Boolean,
@@ -92,14 +110,14 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
+    suppressReservedKeysWarning: true,
   }
 );
 
 // Indexes for better query performance
-userSchema.index({ email: 1 });
-userSchema.index({ username: 1 });
 userSchema.index({ role: 1 });
 userSchema.index({ isVerified: 1 });
+userSchema.index({ status: 1 });
 
 // Virtual for full user info
 userSchema.virtual("fullInfo").get(function () {
