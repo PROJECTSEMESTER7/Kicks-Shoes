@@ -26,7 +26,8 @@ const router = Router();
  * @desc    Create a new product
  * @access  Private
  */
-router.post("/", protect, requireRoles("admin", "shop"), createProduct);
+router.get("/", protect, requireRoles("admin", "shop"), getAllProducts);
+router.post("/add", protect, requireRoles("admin", "shop"), createProduct);
 router.post(
   "/create",
   protect,
@@ -55,7 +56,6 @@ router.post(
  * @desc    Get product by ID
  * @access  Public
  */
-router.get("/get", protect, requireRoles("admin", "shop"), getAllProducts);
 router.get("/:id", protect, requireRoles("admin", "shop"), getProductById);
 /**
  * @route   PUT /api/products/:id

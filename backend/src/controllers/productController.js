@@ -179,12 +179,10 @@ export const getProductById = async (req, res, next) => {
     next(new ErrorResponse(error.message, 500));
   }
 }
-
 export const getAllProducts = async (req, res, next) => {
   try {
     logger.info("Fetching all products", { query: req.query });
 
-    // Validate query parameters
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -193,12 +191,16 @@ export const getAllProducts = async (req, res, next) => {
       });
     }
 
-    const products = await ProductService.getAllProducts(req.query);
+    // Nhận về { products, total }
+    const { products, total } = await ProductService.getAllProducts(req.query);
 
     logger.info("Products fetched successfully", { count: products.length });
     res.status(200).json({
       success: true,
-      data: products,
+      data: {
+        products,
+        total,
+      },
     });
   } catch (error) {
     logger.error("Error fetching products", { error: error.message });

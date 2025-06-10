@@ -226,12 +226,17 @@ static async getAllProducts(query = {}) {
     sortOptions[sortBy] = order === 'asc' ? 1 : -1;
 
     const skip = (parseInt(page) - 1) * parseInt(limit);
+
+    // Lấy tổng số sản phẩm
+    const total = await Product.countDocuments(filter);
+
+    // Lấy danh sách sản phẩm phân trang
     const products = await Product.find(filter)
       .sort(sortOptions)
       .skip(skip)
       .limit(parseInt(limit));
 
-    return products;
+    return { products, total };
   } catch (error) {
     logger.error("Error retrieving filtered products", { error: error.message });
     throw error;
