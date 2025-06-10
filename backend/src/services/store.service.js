@@ -6,8 +6,8 @@
  * It provides methods for creating, updating, and deleting stores.
  */
 
-import Store from "../models/Store.js";
 import mongoose from "mongoose";
+import Store from "../models/Store.js";
 import logger from "../utils/logger.js";
 
 export class StoreService {
@@ -100,7 +100,7 @@ static async updateStore(storeId, storeData) {
     }
 
     Object.assign(store, storeData);
-    await store.save(); // ❌ Không cần truyền session
+    await store.save();
 
     logger.info("Store updated successfully", { storeId: store._id });
     return store;

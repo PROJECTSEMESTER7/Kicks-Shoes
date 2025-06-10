@@ -8,7 +8,7 @@
 
 import express from "express";
 import {
-  getStores,
+  getAllStores,
   getStoreById,
   updateStore,
   deleteStore,
@@ -24,7 +24,7 @@ import upload from "../middlewares/upload.middleware.js";
 
 const router = express.Router();
 
-router.route("/").get(getStores);// Get all stores
+router.route("/").get(getAllStores);// Get all stores
 
 router.route("/:id").get(getStoreById).put(updateStore);// Get store by id and update store
 
