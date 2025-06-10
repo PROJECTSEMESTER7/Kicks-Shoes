@@ -157,13 +157,25 @@ const AppHeader = () => {
   };
 
   const renderAvatar = () => {
-    console.log("Rendering avatar for user:", user); // Debug log
+    console.log('Rendering avatar with user:', user);
+    const defaultAvatar = "https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png";
+    
     if (user && user.avatar) {
-      return <Avatar src={user.avatar} className="header-avatar" />;
-    } else if (user && user.name) {
+      return (
+        <Avatar 
+          src={user.avatar} 
+          className="header-avatar"
+          onError={(e) => {
+            console.log('Avatar load error in header, falling back to default');
+            e.target.src = defaultAvatar;
+            return true; // Prevent infinite error loop
+          }}
+        />
+      );
+    } else if (user && user.fullName) {
       return (
         <Avatar className="header-avatar">
-          {user.name.charAt(0).toUpperCase()}
+          {user.fullName.charAt(0).toUpperCase()}
         </Avatar>
       );
     } else {
