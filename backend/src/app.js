@@ -27,61 +27,44 @@ import authRoutes from "./routes/authRoutes.js";
 import emailRoutes from "./routes/emailRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import favouriteRoutes from "./routes/favouriteRoutes.js";
 import morgan from "morgan";
 import helmet from "helmet";
 import compression from "compression";
 import { errorHandler } from "./middlewares/error.middleware.js";
 import logger from "./utils/logger.js";
-import { setupUploadDirectories } from "./utils/setupUploads.js";
 
 // Load environment variables
 dotenv.config();
 
-// Connect to database
-connectDB();
-
-// Set up upload directories
-setupUploadDirectories();
-
+// Create Express app
 const app = express();
 
+// Connect to MongoDB
+connectDB();
+
 // Middleware
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
-app.use(morgan("dev"));
 app.use(helmet());
 app.use(compression());
-
-// Serve static files from uploads directory
-app.use("/uploads", express.static("uploads"));
-
-// Default route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Kicks Shoes API" });
-});
+app.use(morgan("dev"));
 
 // Routes
-app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api/shop", shopRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/store", shopRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/email", emailRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/favourites", favouriteRoutes);
 
-// Error handler
+// Error handling
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
-
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   logger.info(`Server is running on port ${PORT}`);
 });
