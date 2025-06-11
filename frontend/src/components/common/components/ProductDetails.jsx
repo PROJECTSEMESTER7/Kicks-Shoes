@@ -36,19 +36,6 @@ const { TextArea } = Input;
 const { Option } = Select;
 const { Title, Text } = Typography;
 
-const mockProduct = {
-  name: "Adidas Ultra boost",
-  description: "Long distance running requires a lot from athletes.",
-  category: "Sneaker",
-  brand: "Addidas",
-  sku: "#32A53",
-  stock: 21,
-  regularPrice: 110.4,
-  salePrice: 450,
-  tags: ["Adidas", "Shoes", "Sneakers", "Ultraboost"],
-  images: [productImg, productImg, productImg, productImg],
-};
-
 const emptyProduct = {
   name: "",
   summary: "",
@@ -110,12 +97,23 @@ const colorOptions = [
   { label: "Gray", value: "#808080" },
   { label: "Brown", value: "#A52A2A" },
 ];
-
+const mockProduct = {
+  name: "Adidas Ultra boost",
+  description: "Long distance running requires a lot from athletes.",
+  category: "Sneaker",
+  brand: "Addidas",
+  sku: "#32A53",
+  stock: 21,
+  regularPrice: 110.4,
+  salePrice: 450,
+  tags: ["Adidas", "Shoes", "Sneakers", "Ultraboost"],
+  images: [productImg, productImg, productImg, productImg],
+};
 export default function ProductDetails() {
   const { setActiveTab } = useContext(ActiveTabContext);
   const location = useLocation();
   const isAddNew = location.pathname.includes("add-new");
-  const [product, setProduct] = useState(isAddNew ? emptyProduct : mockProduct);
+  const [product, setProduct] = useState(emptyProduct);
   const [fileList, setFileList] = useState(
     isAddNew
       ? []
@@ -128,13 +126,23 @@ export default function ProductDetails() {
   );
   const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
+    useEffect(() => {
     setActiveTab("2");
     // Fetch categories
     axios.get("/api/categories").then((res) => {
       if (res.data && res.data.data) setCategories(res.data.data);
     });
-  }, [setActiveTab]);
+    // Fetch product details if not add-new
+    if (!isAddNew) {
+      const productId = location.pathname.split("/").pop();
+      axios
+        .get(`/api/products/${productId}`)
+        .then((res) => {
+          if (res.data && res.data.data) setProduct(res.data.data);
+        })
+        .catch(() => message.error("Failed to fetch product details!"));
+    }
+  }, [setActiveTab, isAddNew, location.pathname]);
 
   const handleChange = (field, value) => {
     setProduct((prev) => ({ ...prev, [field]: value }));
@@ -158,12 +166,60 @@ export default function ProductDetails() {
     }));
   };
 
-  const handleUpdate = () => {
-    message.success("Product updated successfully!");
+  
+  const handleUpdate = async () => {
+    try {
+      const userInfo = localStorage.getItem("userInfo");
+      const token = userInfo ? JSON.parse(userInfo).token : null;
+      const productId = product._id || product.id;
+      const payload = {
+        name: product.name,
+        summary: product.summary,
+        description: product.description,
+        brand: product.brand,
+        category: product.category,
+        price: {
+          regular: Number(product.price.regular),
+          discountPercent: Number(product.price.discountPercent),
+          isOnSale: Boolean(product.price.isOnSale),
+        },
+        variants: {
+          sizes: product.variants.sizes,
+          colors: product.variants.colors,
+        },
+        inventory: product.inventory,
+        images: product.images,
+        tags: product.tags,
+        status: product.status,
+        stock: product.stock,
+        isNew: product.isNew,
+      };
+      await axios.put(`/api/products/${productId}`, payload, {
+        headers: {
+          Authorization: token ? `Bearer ${token}` : "",
+        },
+      });
+      message.success("Product updated successfully!");
+    } catch (err) {
+      message.error("Failed to update product!");
+    }
   };
 
-  const handleDelete = () => {
-    message.error("Product deleted!");
+  const handleDelete = async () => {
+    try {
+      const userInfo = localStorage.getItem("userInfo");
+      const token = userInfo ? JSON.parse(userInfo).token : null;
+      const productId = product._id || product.id;
+      await axios.delete(`/api/products/${productId}/delete`, {
+        headers: {
+          Authorization: token ? `Bearer ${token}` : "",
+        },
+      });
+      message.success("Product deleted successfully!");
+      // Optional: redirect or refresh after delete
+    } catch (err) {
+      message.error("Failed to delete product!");
+    }
   };
 
   const handleCancel = () => {
