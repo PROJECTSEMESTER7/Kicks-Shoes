@@ -20,11 +20,7 @@ export class ProductService {
    * @returns {Promise<Product>} The created product
    */
   static async createProduct(productData) {
-    let session;
     try {
-      session = await mongoose.startSession();
-      session.startTransaction();
-
       const {
         name,
         description,
@@ -74,21 +70,13 @@ export class ProductService {
         isNew,
       });
 
-      await product.save({ session });
-      await session.commitTransaction();
+      await product.save();
 
       logger.info("Product created successfully", { productId: product._id });
       return product;
     } catch (error) {
-      if (session) {
-        await session.abortTransaction();
-      }
       logger.error("Error creating product", { error: error.message });
       throw error;
-    } finally {
-      if (session) {
-        session.endSession();
-      }
     }
   }
 
