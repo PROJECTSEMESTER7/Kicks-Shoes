@@ -17,6 +17,7 @@
   "dependencies": {
     "@ant-design/charts": "^2.3.0",
     "@google/generative-ai": "^0.24.1",
+    "all": "^0.0.0",
     "antd": "^5.25.1",
     "bcryptjs": "^3.0.2",
     "chart.js": "^4.4.9",

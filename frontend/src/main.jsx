@@ -37,6 +37,7 @@ import ListingPage from "./components/pages/listing-page/pages/ListingPage";
 import ProductDetailPage from "./components/pages/product/pages/ProductDetailPage";
 import Account from "./components/pages/account/Account";
 import ProfileTab from "./components/pages/account/components/ProfileTab";
+import FavouritesTab from "./components/pages/account/components/FavouritesTab";
 
 // Styles
 import "./styles/index.css";
@@ -151,6 +152,10 @@ const router = createBrowserRouter([
           {
             path: "profile",
             element: <ProfileTab />,
+          },
+          {
+            path: "favourites",
+            element: <FavouritesTab />,
           },
           {
             path: "orders",
