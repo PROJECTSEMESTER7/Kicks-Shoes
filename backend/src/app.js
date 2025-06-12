@@ -34,6 +34,7 @@ import compression from "compression";
 import { errorHandler } from "./middlewares/error.middleware.js";
 import logger from "./utils/logger.js";
 import { setupUploadDirectories } from "./utils/setupUploads.js";
+import { startDiscountStatusUpdateCron } from './utils/cronJobs.js';
 
 // Load environment variables
 dotenv.config();
@@ -78,6 +79,9 @@ app.use("/api/email", emailRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/discounts", discountRoutes);
+
+// Start cron jobs
+startDiscountStatusUpdateCron();
 
 // Error handler
 app.use(errorHandler);

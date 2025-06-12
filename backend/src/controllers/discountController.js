@@ -3,13 +3,9 @@ import Discount from '../models/Discount.js';
 // Get all discounts
 const getAllDiscounts = async (req, res) => {
   try {
-    const { isActive, page = 1, limit = 10, category, product } = req.query;
+    const { page = 1, limit = 10, category, product } = req.query;
     const query = {};
     
-    if (isActive !== undefined) {
-      query.isActive = isActive === 'true';
-    }
-
     if (category) {
       query.applicableCategories = category;
     }
@@ -24,12 +20,22 @@ const getAllDiscounts = async (req, res) => {
       sort: { createdAt: -1 }
     };
 
+    // Get all discounts and update their status
     const discounts = await Discount.find(query)
       .skip((options.page - 1) * options.limit)
       .limit(options.limit)
       .sort(options.sort)
       .populate('applicableProducts', 'name price')
       .populate('applicableCategories', 'name');
+
+    // Update status for each discount
+    for (let discount of discounts) {
+      const oldStatus = discount.status;
+      const newStatus = discount.updateStatus();
+      if (oldStatus !== newStatus) {
+        await discount.save();
+      }
+    }
 
     const total = await Discount.countDocuments(query);
 
@@ -84,15 +90,17 @@ const createDiscount = async (req, res) => {
     const {
       code,
       description,
-      discountType,
+      type,
       value,
       maxDiscount,
       startDate,
       endDate,
-      minPurchaseAmount,
+      minPurchase,
       usageLimit,
       applicableProducts,
-      applicableCategories
+      applicableCategories,
+      status,
+      usedCount
     } = req.body;
 
     // Check if discount code already exists
@@ -115,15 +123,15 @@ const createDiscount = async (req, res) => {
     const discount = await Discount.create({
       code: code.toUpperCase(),
       description,
-      discountType,
+      type,
       value,
       maxDiscount,
       startDate,
       endDate,
-      minPurchaseAmount,
+      minPurchase,
       usageLimit,
-      usedCount: 0,
-      isActive: true,
+      usedCount: usedCount || 0,
+      status: status || 'active',
       applicableProducts,
       applicableCategories
     });
@@ -149,20 +157,6 @@ const createDiscount = async (req, res) => {
 // Update discount
 const updateDiscount = async (req, res) => {
   try {
-    const {
-      description,
-      discountType,
-      value,
-      maxDiscount,
-      startDate,
-      endDate,
-      minPurchaseAmount,
-      usageLimit,
-      isActive,
-      applicableProducts,
-      applicableCategories
-    } = req.body;
-
     const discount = await Discount.findById(req.params.id);
     if (!discount) {
       return res.status(404).json({
@@ -171,19 +165,29 @@ const updateDiscount = async (req, res) => {
       });
     }
 
-    // Update fields
-    if (description) discount.description = description;
-    if (discountType) discount.discountType = discountType;
-    if (value !== undefined) discount.value = value;
-    if (maxDiscount !== undefined) discount.maxDiscount = maxDiscount;
-    if (startDate) discount.startDate = startDate;
-    if (endDate) discount.endDate = endDate;
-    if (minPurchaseAmount !== undefined) discount.minPurchaseAmount = minPurchaseAmount;
-    if (usageLimit !== undefined) discount.usageLimit = usageLimit;
-    if (isActive !== undefined) discount.isActive = isActive;
-    if (applicableProducts) discount.applicableProducts = applicableProducts;
-    if (applicableCategories) discount.applicableCategories = applicableCategories;
+    // Define updatable fields (excluding 'type')
+    const updatableFields = [
+      'description', 'value', 'maxDiscount', 
+      'startDate', 'endDate', 'minPurchase', 
+      'usageLimit', 'applicableProducts', 'applicableCategories'
+    ];
 
+    // Check if type is being updated
+    if (req.body.type && req.body.type !== discount.type) {
+      return res.status(400).json({
+        success: false,
+        message: 'Discount type cannot be modified after creation'
+      });
+    }
+
+    // Update allowed fields
+    updatableFields.forEach(field => {
+      if (req.body[field] !== undefined) {
+        discount[field] = req.body[field];
+      }
+    });
+
+    // Status will be automatically updated in pre-save middleware
     const updatedDiscount = await discount.save();
     await updatedDiscount.populate('applicableProducts', 'name price');
     await updatedDiscount.populate('applicableCategories', 'name');
