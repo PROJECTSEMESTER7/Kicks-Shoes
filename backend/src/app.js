@@ -16,14 +16,16 @@
  * - Logging configuration
  */
 
-import express from "express";
+import compression from "compression";
 import cors from "cors";
 import dotenv from "dotenv";
+import express from "express";
+import helmet from "helmet";
+import morgan from "morgan";
 import connectDB from "./config/database.js";
-import userRoutes from "./routes/userRoutes.js";
-import shopRoutes from "./routes/storeRoutes.js";
-import categoryRoutes from "./routes/categoryRoutes.js";
+import { errorHandler } from "./middlewares/error.middleware.js";
 import authRoutes from "./routes/authRoutes.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
 import emailRoutes from "./routes/emailRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
@@ -32,6 +34,8 @@ import morgan from "morgan";
 import helmet from "helmet";
 import compression from "compression";
 import { errorHandler } from "./middlewares/error.middleware.js";
+import { default as shopRoutes, default as storeRoutes } from "./routes/storeRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import logger from "./utils/logger.js";
 import { setupUploadDirectories } from "./utils/setupUploads.js";
 
@@ -75,6 +79,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/shop", shopRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/email", emailRoutes);
+app.use("/api/stores", storeRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/favourites", favouriteRoutes);
@@ -82,7 +87,7 @@ app.use("/api/favourites", favouriteRoutes);
 // Error handler
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   logger.info(`Server is running on port ${PORT}`);
