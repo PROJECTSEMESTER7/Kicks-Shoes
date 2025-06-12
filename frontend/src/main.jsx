@@ -37,6 +37,7 @@ import ListingPage from "./components/pages/listing-page/pages/ListingPage";
 import ProductDetailPage from "./components/pages/product/pages/ProductDetailPage";
 import Account from "./components/pages/account/Account";
 import ProfileTab from "./components/pages/account/components/ProfileTab";
+import RewardPointsDetail from "./components/pages/account/components/RewardPointsDetail";
 
 // Styles
 import "./styles/index.css";
@@ -163,6 +164,10 @@ const router = createBrowserRouter([
           {
             path: "chat",
             element: <ChatPage />,
+          },
+          {
+            path: "reward-points",
+            element: <RewardPointsDetail />,
           },
         ],
       },
