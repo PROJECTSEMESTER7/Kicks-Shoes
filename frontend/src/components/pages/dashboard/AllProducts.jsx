@@ -4,10 +4,10 @@ import { Button, Row, Col, Pagination } from "antd";
 import "./dashboard.css";
 import ProductCard from "./components/ProductCard";
 import TabHeader from "../../common/components/TabHeader";
-import { ActiveTabContext } from "../../common/components/ActiveTabContext"; 
+// import { ActiveTabContext } from "../../common/components/ActiveTabContext"; 
 
 export default function AllProducts() {
-  const { setActiveTab } = useContext(ActiveTabContext);
+  // const { setActiveTab } = useContext(ActiveTabContext);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 9;
   const [products, setProducts] = useState([]);
