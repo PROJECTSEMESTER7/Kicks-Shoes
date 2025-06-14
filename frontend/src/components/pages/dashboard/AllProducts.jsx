@@ -7,7 +7,7 @@ import TabHeader from "../../common/components/TabHeader";
 import { ActiveTabContext } from "../../common/components/ActiveTabContext"; 
 
 export default function AllProducts() {
-  const { setActiveTab } = useContext(ActiveTabContext);
+  // const { setActiveTab } = useContext(ActiveTabContext);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 9;
   const [products, setProducts] = useState([]);
