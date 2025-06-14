@@ -12,6 +12,7 @@ import OrderDetails from "./components/common/components/OrderDetails";
 import OrderList from "./components/common/components/OrderList";
 import ProductDetails from "./components/common/components/ProductDetails";
 import ErrorPage from "./components/common/pages/Error";
+import CategoryDetails from "./components/pages/categories/CategoryDetail";
 
 // Layout
 import App from "./components/layout/App";
@@ -38,6 +39,8 @@ import ProductDetailPage from "./components/pages/product/pages/ProductDetailPag
 import Account from "./components/pages/account/Account";
 import ProfileTab from "./components/pages/account/components/ProfileTab";
 import RewardPointsDetail from "./components/pages/account/components/RewardPointsDetail";
+import FavouritesTab from "./components/pages/account/components/FavouritesTab";
+import AllCategories from "./components/pages/categories/AllCategories";
 
 // Styles
 import "./styles/index.css";
@@ -53,7 +56,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
     children: [
       {
         path: "",
@@ -112,6 +115,19 @@ const router = createBrowserRouter([
             element: <AllProducts />,
           },
           {
+            path: "categories",
+            element: <AllCategories />,
+          },
+          {
+            path: "categories/:storeId",
+            element: <CategoryDetails />,
+          },
+          {
+            path: "categories/add-new",
+            element: <CategoryDetails isAddNew={true} />,
+          },
+
+          {
             path: "orders",
             element: <OrderList />,
           },
@@ -152,6 +168,10 @@ const router = createBrowserRouter([
           {
             path: "profile",
             element: <ProfileTab />,
+          },
+          {
+            path: "favourites",
+            element: <FavouritesTab />,
           },
           {
             path: "orders",
