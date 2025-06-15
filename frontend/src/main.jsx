@@ -5,6 +5,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "./contexts/AuthContext";
 import { CartProvider } from "./contexts/CartContext";
+import { store, persistor } from './store/store';
+import { Provider } from "react-redux";
+import { PersistGate } from 'redux-persist/integration/react';
 
 // Common Components
 import ChatPage from "./components/common/components/ChatPage";
@@ -209,6 +212,8 @@ const router = createBrowserRouter([
 
 const Root = () => (
   <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
     <AuthProvider>
       <CartProvider>
         <ToastContainer
@@ -226,6 +231,9 @@ const Root = () => (
         <RouterProvider router={router} />
       </CartProvider>
     </AuthProvider>
+    
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );
 

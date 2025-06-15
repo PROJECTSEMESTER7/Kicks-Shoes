@@ -40,6 +40,7 @@ import userRoutes from "./routes/userRoutes.js";
 import logger from "./utils/logger.js";
 import { setupUploadDirectories } from "./utils/setupUploads.js";
 import { startDiscountStatusUpdateCron } from "./utils/cronJobs.js";
+import cartRoutes from './routes/cartRoutes.js'
 
 // Load environment variables
 dotenv.config();
@@ -86,6 +87,7 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/reward-points", rewardPointRoutes);
 app.use("/api/discounts", discountRoutes);
+app.use("/api/cart", cartRoutes);
 
 // Start cron jobs
 startDiscountStatusUpdateCron();
