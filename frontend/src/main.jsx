@@ -52,6 +52,10 @@ import ResetPasswordForm from "./components/pages/authentication/pages/ResetPass
 const userInfo = localStorage.getItem("userInfo");
 const user = userInfo ? JSON.parse(userInfo) : null;
 
+// Add debug logging
+console.log("Main.jsx - User Info from localStorage:", userInfo);
+console.log("Main.jsx - Parsed User:", user);
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -126,7 +130,6 @@ const router = createBrowserRouter([
             path: "categories/add-new",
             element: <CategoryDetails isAddNew={true} />,
           },
-
           {
             path: "orders",
             element: <OrderList />,

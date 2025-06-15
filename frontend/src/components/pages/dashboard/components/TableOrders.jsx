@@ -5,7 +5,11 @@ import { Table, Tag, Avatar, Checkbox } from "antd";
 const StatusTag = React.memo(({ status }) => (
   <Tag
     color={
-      status === "Completed" ? "rgb(59 130 246 / 30%)" : "rgb(245 158 66 / 30%)"
+      status === "completed"
+        ? "rgb(59 130 246 / 30%)"
+        : status === "refunded"
+        ? "rgb(239 68 68 / 30%)"
+        : "rgb(245 158 66 / 30%)"
     }
     style={{ borderRadius: 10, fontWeight: 500 }}
   >
@@ -16,17 +20,22 @@ const StatusTag = React.memo(({ status }) => (
           width: 8,
           height: 8,
           borderRadius: "50%",
-          background: status === "Completed" ? "#3b82f6" : "#f59e42",
-          marginRight: 6
+          background:
+            status === "completed"
+              ? "#3b82f6"
+              : status === "refunded"
+              ? "#ef4444"
+              : "#f59e42",
+          marginRight: 6,
         }}
       />
-      {status}
+      {status.charAt(0).toUpperCase() + status.slice(1)}
     </span>
   </Tag>
 ));
 
 StatusTag.propTypes = {
-  status: PropTypes.string.isRequired
+  status: PropTypes.string.isRequired,
 };
 
 const CustomerCell = React.memo(({ name }) => (
@@ -36,32 +45,35 @@ const CustomerCell = React.memo(({ name }) => (
 ));
 
 CustomerCell.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
 };
 
 const TableOrders = ({ title, orders, dashboard }) => {
   const columns = useMemo(() => {
     const baseColumns = [
       {
-        title: "Product",
-        dataIndex: "items",
-        key: "product",
-        render: (items) => items[0]?.name || "N/A"
+        title: "Order ID",
+        dataIndex: "_id",
+        key: "id",
       },
-      { title: "Order ID", dataIndex: "id", key: "id" },
-      { title: "Date", dataIndex: "date", key: "date" },
+      {
+        title: "Date",
+        dataIndex: "createdAt",
+        key: "date",
+        render: (date) => new Date(date).toLocaleDateString(),
+      },
       {
         title: "Status",
         dataIndex: "status",
         key: "status",
-        render: (status) => <StatusTag status={status} />
+        render: (status) => <StatusTag status={status} />,
       },
       {
         title: "Amount",
-        dataIndex: "amount",
+        dataIndex: "totalPrice",
         key: "amount",
-        render: (amount) => `$${amount.toFixed(2)}`
-      }
+        render: (amount) => `$${amount?.toFixed(2) || "0.00"}`,
+      },
     ];
 
     if (dashboard) {
@@ -70,14 +82,14 @@ const TableOrders = ({ title, orders, dashboard }) => {
         dataIndex: "checkbox",
         key: "checkbox",
         width: 40,
-        render: () => <Checkbox />
+        render: () => <Checkbox />,
       });
 
       baseColumns.splice(4, 0, {
         title: "Customer Name",
-        dataIndex: "customer",
+        dataIndex: "user",
         key: "customer",
-        render: (name) => <CustomerCell name={name} />
+        render: (userId) => <CustomerCell name={userId} />,
       });
     }
 
@@ -91,11 +103,12 @@ const TableOrders = ({ title, orders, dashboard }) => {
         columns={columns}
         dataSource={orders}
         pagination={false}
+        rowKey="_id"
         onRow={(record) => ({
           onClick: () => {
-            window.location.href = `/dashboard/orders/${record.id}`;
+            window.location.href = `/dashboard/orders/${record._id}`;
           },
-          style: { cursor: "pointer" }
+          style: { cursor: "pointer" },
         })}
       />
     </div>
@@ -106,22 +119,15 @@ TableOrders.propTypes = {
   title: PropTypes.string.isRequired,
   orders: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      customer: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      amount: PropTypes.number.isRequired,
+      _id: PropTypes.string.isRequired,
+      user: PropTypes.string.isRequired,
       status: PropTypes.string.isRequired,
-      items: PropTypes.arrayOf(
-        PropTypes.shape({
-          productId: PropTypes.number.isRequired,
-          name: PropTypes.string.isRequired,
-          quantity: PropTypes.number.isRequired,
-          price: PropTypes.number.isRequired
-        })
-      ).isRequired
+      totalPrice: PropTypes.number.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      items: PropTypes.array.isRequired,
     })
   ).isRequired,
-  dashboard: PropTypes.bool
+  dashboard: PropTypes.bool,
 };
 
 export default React.memo(TableOrders);

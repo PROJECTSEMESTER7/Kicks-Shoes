@@ -13,7 +13,6 @@ import logger from "../utils/logger.js";
 // Validation rules for order operations
 const orderValidationRules = {
   create: [
-    body("user").isMongoId().withMessage("Invalid user ID"),
     body("products").isArray().withMessage("Products must be an array"),
     body("products.*.id").isMongoId().withMessage("Invalid product ID"),
     body("products.*.quantity")
@@ -61,15 +60,15 @@ export const createOrder = [
   async (req, res, next) => {
     try {
       logger.info("Creating new order", {
-        userId: req.body.user,
+        userId: req.user._id,
         productCount: req.body.products.length,
       });
 
-      const { user, products, totalAmount, paymentMethod, shippingAddress } =
+      const { products, totalAmount, paymentMethod, shippingAddress } =
         req.body;
 
       const order = await OrderService.createOrder({
-        user,
+        user: req.user._id,
         products,
         totalAmount,
         paymentMethod,
