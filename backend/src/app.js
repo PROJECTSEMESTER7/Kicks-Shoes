@@ -29,6 +29,7 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import emailRoutes from "./routes/emailRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+
 import rewardPointRoutes from "./routes/rewardPointRoutes.js";
 import discountRoutes from "./routes/discountRoutes.js";
 import favouriteRoutes from "./routes/favouriteRoutes.js";
@@ -40,7 +41,6 @@ import userRoutes from "./routes/userRoutes.js";
 import logger from "./utils/logger.js";
 import { setupUploadDirectories } from "./utils/setupUploads.js";
 import { startDiscountStatusUpdateCron } from "./utils/cronJobs.js";
-
 // Load environment variables
 dotenv.config();
 
