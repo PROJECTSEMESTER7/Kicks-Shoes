@@ -147,6 +147,16 @@ discountSchema.methods.isValid = function () {
     this.usedCount < this.usageLimit
   );
 };
+discountSchema.statics.updateAllDiscountStatus = async function() {
+  const discounts = await this.find();
+  for (let discount of discounts) {
+    const oldStatus = discount.status;
+    const newStatus = discount.updateStatus();
+    if (oldStatus !== newStatus) {
+      await discount.save();
+    }
+  }
+};
 
 const Discount = mongoose.model("Discount", discountSchema);
 
