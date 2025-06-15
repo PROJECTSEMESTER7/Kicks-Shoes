@@ -4,9 +4,7 @@
  * @file Discount.js
  * @description This file defines the Discount model schema for the Kicks Shoes application.
  */
-
 import mongoose from "mongoose";
-
 const discountSchema = new mongoose.Schema(
   {
     code: {
@@ -102,7 +100,6 @@ discountSchema.index({ endDate: 1 });
 discountSchema.index({ applicableProducts: 1 });
 discountSchema.index({ applicableCategories: 1 });
 
-// Method to update status based on dates
 discountSchema.methods.updateStatus = function() {
   const now = new Date();
   
